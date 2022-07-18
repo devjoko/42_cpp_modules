@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:12:38 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/18 19:23:57 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/18 20:30:04 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ private:
 	int			_index;
 	std::string	_firstName;
 	std::string	_lastName;
-	std::string	_nickame;
+	std::string	_nickname;
 	std::string	_phoneNumber;
 	std::string	_darkestSecret;
 public:

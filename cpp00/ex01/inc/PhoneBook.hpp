@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:35:29 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/18 19:28:42 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/18 20:52:41 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 class PhoneBook
 {
 private:
-	Contact _contacts[8];
+	Contact	_contacts[8];
+	int		_numberOfContacts;
+	bool	_loopStatus;
 public:
 	PhoneBook(void);
 	~PhoneBook(void);
@@ -24,6 +26,10 @@ public:
 	void	addContact(void);
 	void	searchContact(void) const;
 	void	exit(void) const;
-};
 
-static int	count = 0; // ?
+	void	incrementNumberOfContacts(void);
+	// void	setNumberOfContacts(int);
+	// int		getNumberOfContacts(void) const;
+	void	setLoopStatus(bool boolean);
+	bool	getLoopStatus(void) const;
+};
