@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:35:23 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/18 21:07:26 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/19 16:03:02 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	PhoneBook::addContact(void)
 	std::string	phoneNumber;
 	std::string	darkestSecret;
 
+	std::cout << "ADD" << std::endl;
 	std::cout << "Please enter a first name: ";
 	std::cin >> firstName;
 	std::cout << "Please enter a last name: ";
@@ -50,18 +51,21 @@ void	PhoneBook::addContact(void)
 	std::cin >> darkestSecret;
 
 	// can't have empty fields => strlen == 0?
-	
-	
 }
 
 void	PhoneBook::searchContact(void) const
 {
+	std::cout << "SEARCH" << std::endl;
 	
 }
 
-void	PhoneBook::exit(void) const
+void	PhoneBook::exit(void)
 {
-	this->~PhoneBook();
+	std::cout << "EXIT" << std::endl;
+	std::cout << "We hope you enjoyed your <Awesome PhoneBook™>." << std::endl;
+	std::cout << "Until next time!" << std::endl;
+
+	this->setLoopStatus(false);
 }
 
 void	PhoneBook::incrementNumberOfContacts(void)

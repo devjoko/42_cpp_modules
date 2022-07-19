@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:35:29 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/18 20:52:41 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/19 15:31:21 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 
 	void	addContact(void);
 	void	searchContact(void) const;
-	void	exit(void) const;
+	void	exit(void);
 
 	void	incrementNumberOfContacts(void);
 	// void	setNumberOfContacts(int);
