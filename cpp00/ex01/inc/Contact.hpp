@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:12:38 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/18 20:30:04 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/20 20:35:17 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 class Contact
 {
 private:
-	int			_index;
 	std::string	_firstName;
 	std::string	_lastName;
 	std::string	_nickname;
@@ -26,13 +25,11 @@ public:
 	Contact(void);
 	~Contact(void);
 
-	void		setIndex(int index);
 	void		setFirstName(std::string firstName);
 	void		setLastName(std::string lastName);
 	void		setNickname(std::string nickname);
 	void		setPhoneNumber(std::string phoneNumber);
 	void		setDarkestSecret(std::string darkestSecret);
-	int			getIndex(void) const;
 	std::string	getFirstName(void) const;
 	std::string	getLastName(void) const;
 	std::string	getNickname(void) const;

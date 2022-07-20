@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:32:47 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/18 20:39:12 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/20 20:35:34 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,22 @@
 /*	CONSTRUCTOR	*/
 Contact::Contact(void)
 {
-	std::cout << "CONTACT Constructor called" << std::endl;
+	this->setFirstName("");
+	this->setLastName("");
+	this->setNickname("");
+	this->setPhoneNumber("");
+	this->setDarkestSecret("");
 	return ;
 }
 
 /*	DECONSTRUCTOR	*/
 Contact::~Contact(void)
 {
-	std::cout << "CONTACT Destructor called" << std::endl;
 	return ;
 }
 
 /*	SETTER	*/
 // Check string_length or null?
-void	Contact::setIndex(int index)
-{
-	this->_index = index;
-}
-
 void	Contact::setFirstName(std::string firstName)
 {
 	this->_firstName = firstName;
@@ -60,11 +58,6 @@ void	Contact::setDarkestSecret(std::string darkestSecret)
 }
 
 /*	GETTER	*/
-int	Contact::getIndex(void) const
-{
-	return (this->_index);
-}
-
 std::string	Contact::getFirstName(void) const
 {
 	return (this->_firstName);
