@@ -26,11 +26,13 @@ public:
 	Contact(void);
 	~Contact(void);
 
+	void		setIndex(int index);
 	void		setFirstName(std::string firstName);
 	void		setLastName(std::string lastName);
 	void		setNickname(std::string nickname);
 	void		setPhoneNumber(std::string phoneNumber);
 	void		setDarkestSecret(std::string darkestSecret);
+	int			getIndex(void) const;
 	std::string	getFirstName(void) const;
 	std::string	getLastName(void) const;
 	std::string	getNickname(void) const;

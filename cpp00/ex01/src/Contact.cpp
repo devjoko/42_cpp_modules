@@ -29,6 +29,11 @@ Contact::~Contact(void)
 
 /*	SETTER	*/
 // Check string_length or null?
+void	Contact::setIndex(int index)
+{
+	this->_index = index;
+}
+
 void	Contact::setFirstName(std::string firstName)
 {
 	this->_firstName = firstName;
@@ -55,6 +60,11 @@ void	Contact::setDarkestSecret(std::string darkestSecret)
 }
 
 /*	GETTER	*/
+int	Contact::getIndex(void) const
+{
+	return (this->_index);
+}
+
 std::string	Contact::getFirstName(void) const
 {
 	return (this->_firstName);
