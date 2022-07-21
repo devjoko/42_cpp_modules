@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:51:32 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/20 23:06:25 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/21 18:55:13 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*	CONSTRUCTOR	*/
 Zombie::Zombie( void )
 {
-	std::cout << "CONSTRUCTOR Zombie";
+	std::cout << "A new zombie arrived into this world!" << std::endl;
 	this->name = "";
 	return ;
 }
