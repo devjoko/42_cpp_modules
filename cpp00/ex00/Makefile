@@ -3,8 +3,9 @@ CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 O		= obj/
+S		= src/
 
-OBJS	= $(patsubst %.cpp, $O%.o, $(SRCS))
+OBJS	= $(patsubst $S%.cpp, $O%.o, $(SRCS))
 SRCS	= $Smegaphone.cpp \
 
 .PHONY: all clean fclean re
@@ -18,7 +19,7 @@ $(NAME):	$(OBJS)
 			@echo "\033[1;35md[-_-]b $(NAME)\033[0m \033[0;35mcreated.\033[0m"
 
 # Compiling...
-$O%.o:		%.cpp
+$O%.o:		$S%.cpp
 			@[ -d $(O) ] || mkdir -p $(O)
 			@echo "\033[1;36md[-_-]b $(NAME)\033[0m \033[0;36mcompiling.\033[0m"
 			@$(CC) $(CFLAGS) -c $< -o $@
