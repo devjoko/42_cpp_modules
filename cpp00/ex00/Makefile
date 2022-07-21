@@ -4,7 +4,7 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 O		= obj/
 
-OBJS	= $(patsubst %.c, $O%.o, $(SRCS))
+OBJS	= $(patsubst %.cpp, $O%.o, $(SRCS))
 SRCS	= $Smegaphone.cpp \
 
 .PHONY: all clean fclean re
@@ -13,22 +13,22 @@ all: $(NAME)
 
 # Linking...
 $(NAME):	$(OBJS)
-			@echo "\033[1;32m$(NAME) ʕ·͡ᴥ·ʔ\033[1;0m\033[32m linking...\033[0m"
+			@echo "\033[1;33md[-_-]b $(NAME)\033[0m \033[0;33mlinking.\033[0m"
 			@$(CC) $(OBJS) -o $(NAME)
-			@echo "\033[1;32m$(NAME) ʕ·͡ᴥ·ʔ\033[1;0m\033[32m created.\033[0m"
+			@echo "\033[1;35md[-_-]b $(NAME)\033[0m \033[0;35mcreated.\033[0m"
 
 # Compiling...
-$O%.o:		%.c
+$O%.o:		%.cpp
 			@[ -d $(O) ] || mkdir -p $(O)
-			@echo "\033[1;32m$(NAME) ʕ·͡ᴥ·ʔ\033[1;0m\033[32m compiling...\033[0m"
+			@echo "\033[1;36md[-_-]b $(NAME)\033[0m \033[0;36mcompiling.\033[0m"
 			@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 			@rm -rf $(O)
-			@echo "\033[31mObjects files in $(NAME) \033[1;0m\033[31mremoved.\033[0m"
+			@echo "\033[1;31md[-_-]b object files\033[0m \033[0;31mremoved.\033[0m"
 
 fclean:		clean
 			@rm -f $(NAME)
-			@echo "\033[1;31m$(NAME) ʕ·͡ᴥ·ʔ\033[1;0m\033[31m Removed.\033[0m"
+			@echo "\033[1;31md[-_-]b $(NAME)\033[0m \033[0;31mremoved.\033[0m"
 
 re: fclean all
