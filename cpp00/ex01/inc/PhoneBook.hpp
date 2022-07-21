@@ -6,13 +6,20 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:35:29 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/20 20:50:20 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/21 23:12:37 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <string>
-#include "../inc/Contact.hpp"
+#ifndef PHONEBOOK_H
+# define PHONEBOOK_H
+
+# include <string>
+# include "../inc/Contact.hpp"
+
+// ************************************************************************** //
+//                              PhoneBook Class                               //
+// ************************************************************************** //
 
 class PhoneBook
 {
@@ -46,3 +53,5 @@ public:
 	int			getContactTotalCount(void) const;
 	int			getContactCount(void) const;
 };
+
+#endif /* PHONEBOOK_H */

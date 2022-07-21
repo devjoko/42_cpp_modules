@@ -6,12 +6,19 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:12:38 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/20 20:35:17 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/21 23:12:56 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <string>
+#ifndef CONTACT_H
+# define CONTACT_H
+
+# include <string>
+
+// ************************************************************************** //
+//                               Contact Class                                //
+// ************************************************************************** //
 
 class Contact
 {
@@ -36,3 +43,5 @@ public:
 	std::string	getPhoneNumber(void) const;
 	std::string	getDarkestSecret(void) const;
 };
+
+#endif /* CONTACT_H */
