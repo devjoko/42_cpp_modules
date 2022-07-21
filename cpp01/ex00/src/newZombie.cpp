@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:58:36 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/21 20:04:09 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/21 23:22:08 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 Zombie*	newZombie( std::string name)
 {
-	Zombie *newZombie;
-	
+	Zombie	*newZombie;
+
 	try
 	{
 		newZombie = new Zombie;
