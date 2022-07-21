@@ -6,14 +6,14 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 21:08:46 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/20 22:27:04 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/21 22:53:00 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <iomanip>
 #include <ctime>
-#include "Account.hpp"
+#include "../inc/Account.hpp"
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
