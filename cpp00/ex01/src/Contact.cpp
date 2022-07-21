@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:32:47 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/20 20:35:34 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/21 23:05:17 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ Contact::~Contact(void)
 }
 
 /*	SETTER	*/
-// Check string_length or null?
 void	Contact::setFirstName(std::string firstName)
 {
 	this->_firstName = firstName;
