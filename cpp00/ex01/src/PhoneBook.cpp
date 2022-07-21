@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 13:35:23 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/20 20:49:07 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/21 22:34:21 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,9 +196,6 @@ void	PhoneBook::_printEntries(void) const
 
 void	PhoneBook::searchContact(void) const
 {
-	int			numberOfEntries;
-	std::string	entryIndex;
-
 	if (this->getContactTotalCount() == 0)
 	{
 		std::cout << "Your PhoneBook is currently empty." << std::endl;
