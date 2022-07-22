@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 23:50:03 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/22 01:41:19 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/22 19:08:56 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,11 @@
 #include "../inc/Weapon.hpp"
 
 /*	CONSTRUCTOR	*/
-Weapon::Weapon()
-{
-	return ;
-}
 
-Weapon::Weapon(std::string type)
-{
-	this->type = type;
-	return ;
-}
+Weapon::Weapon(std::string type) : type(type) { return ; }
 
 /*	DECONSTRUCTOR	*/
-Weapon::~Weapon()
-{
-	return ;
-}
+Weapon::~Weapon() { return ; }
 
 /*	SETTER	*/
 void	Weapon::setType(std::string type)

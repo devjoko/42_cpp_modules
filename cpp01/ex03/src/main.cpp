@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 20:36:26 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/22 01:34:17 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/22 18:58:36 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@
 
 int	main(void)
 {
-	std::cout << "\"Violence solves everything.\" [Katarina, League of Legends]" << std::endl;
-	std::cout << std::endl;
-
 	{
 		Weapon club = Weapon("crude spiked club");
 
 		HumanA bob("Bob", club);
 		bob.attack();
-		club.setType("some other type of club"); bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
 	}
 	{
 		Weapon club = Weapon("crude spiked club");
@@ -33,7 +31,8 @@ int	main(void)
 		HumanB jim("Jim");
 		jim.setWeapon(club);
 		jim.attack();
-		club.setType("some other type of club"); jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
 	}
 	return (0);
 }
