@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	std::string	fileName;
 	std::string	s1;
 	std::string	s2;
-	std::string	text;
+	std::string	line;
 
 	if (argc != 4)
 		return (-1);
@@ -39,15 +39,29 @@ int	main(int argc, char **argv)
 		std::cout << "File opening failure (outfile)!" << std::endl;
 		return (-1);
 	}
-	for (int i = 0; i < 5; i++)
+	while (!ifs.eof())
 	{
-		ifs >> text;
-		if (text == s1)
-			text = s2;
-		std::cout << text << std::endl;
-		ofs << text;
+		getline(ifs, line);
+		std::cout << line << std::endl;
+		ofs << line;
+		if (!ifs.eof())
+			ofs << std::endl;
 	}
 	ifs.close();
 	ofs.close();
 	return (0);
 }
+
+
+
+/*
+string buffer
+ios_base::in out
+infile.eof (ifs)
+getline(infile, buffer)
+buffer.find
+string::npos
+erase
+str.length
+insert
+*/
