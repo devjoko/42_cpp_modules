@@ -6,7 +6,8 @@ O		= obj/
 S		= src/
 
 OBJS	= $(patsubst $S%.cpp, $O%.o, $(SRCS))
-SRCS	=	$Smain.cpp
+SRCS	=	$Smain.cpp \
+			$SReplace.cpp \
 
 
 .PHONY: all clean fclean re
