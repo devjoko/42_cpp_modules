@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 20:40:11 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/26 19:04:44 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/26 20:43:58 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ Fixed	Fixed::operator+( Fixed const &other ) const
 
 Fixed	Fixed::operator-( Fixed const &other) const
 {
-	return ( Fixed( this->toFloat() + other.toFloat() ) );
+	return ( Fixed( this->toFloat() - other.toFloat() ) );
 }
 
 Fixed	Fixed::operator*( Fixed const &other ) const
