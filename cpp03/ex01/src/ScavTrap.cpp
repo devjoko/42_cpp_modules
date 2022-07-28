@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:45:44 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 18:37:36 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 19:31:48 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ ScavTrap	&ScavTrap::operator=(ScavTrap const &assign)
 ScavTrap::~ScavTrap()
 {
 	std::cout << "ScavTrap " << this->getName() << " has been left behind."<< std::endl;
-	std::cout << "\t\033[1;33m<|*감*|> I shall wait here, a noble-yet-dangerous robot, alone, mysterious, desperate to be loved...\033[0m" << std::endl;
+	std::cout << "\t\033[1;33m<|x감x|> I shall wait here, a noble-yet-dangerous robot, alone, mysterious, desperate to be loved...\033[0m" << std::endl;
 	std::cout << std::endl;
 	return ;
 }
@@ -104,7 +104,7 @@ void	ScavTrap::attack(const std::string &target)
 	}
 }
 
-void	ScavTrap::guardGate( void )
+void	ScavTrap::guardGate(void)
 {
 	std::cout << "ScavTrap " << this->getName() << " is now in Gate keeper mode." << std::endl;
 	std::cout << "\t\033[1;33m<|ò감ó|> Halt, moon citizen!\033[0m" << std::endl;
