@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:27:58 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 02:22:05 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 16:06:17 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ public:
 	unsigned int	getEnergy(void) const;
 	unsigned int	getDamage(void) const;
 };
+
+std::ostream	&operator<<(std::ostream &o, const ClapTrap &obj);
 
 #endif /* CLAPTRAP_H */

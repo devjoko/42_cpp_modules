@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:46:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 03:22:34 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 16:57:14 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ void	ClapTrap::attack(const std::string &target)
 		std::cout << std::endl;
 		this->_energy -= 1;
 	}
-	else if (this->_hitpoints <= 0)
+	else if (this->_hitpoints == 0)
 	{
-		std::cout << "ClapTrap " << this->getName() << " is fatally injured!" << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " is fatally injured and cannot attack " << target << "!" << std::endl;
 		std::cout << "\t\033[1;36md[T_T]b [sobbing]\033[0m" << std::endl;
 		std::cout << std::endl;
 	}
-	else if (this->_energy <= 0)
+	else if (this->_energy == 0)
 	{
-		std::cout << "ClapTrap " << this->getName() << " has no energy points left!" << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " has no energy points left and cannot attack " << target << "!" << std::endl;
 		std::cout << "\t\033[1;36md[X_x]b STAIRS?! NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!\033[0m" << std::endl;
 		std::cout << std::endl;
 	}
@@ -96,16 +96,29 @@ void	ClapTrap::attack(const std::string &target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
+	unsigned int	hpLost;
+
 	if (this->_hitpoints > 0)
 	{
-		this->_hitpoints -= amount;
-		std::cout << "ClapTrap " << this->getName() << " has taken damage and lost " << amount << " hitpoints!" << std::endl;
+		if (this->_hitpoints < amount)
+		{
+			hpLost = _hitpoints;
+			this->_hitpoints = 0;
+		}
+		else
+		{
+			hpLost = amount;
+			this->_hitpoints -= amount;
+		}
+		std::cout << "ClapTrap " << this->getName() << " has taken " << amount << " damage and lost " << hpLost << " hitpoints!" << std::endl;
+		if (this->_hitpoints == 0)
+			std::cout << "ClapTrap " << this->getName() << " is fatally injured!" << std::endl;
 		std::cout << "\t\033[1;36md[o_0]b NO! Don't dispatch MORE troops! I'm sorry! I'm sorry pretty female voice!\033[0m" << std::endl;
 		std::cout << std::endl;
 	}
-	else if (this->_hitpoints <= 0)
+	else if (this->_hitpoints == 0)
 	{
-		std::cout << "ClapTrap " << this->getName() << " is fatally injured!" << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " is fatally injured and cannot be hurt more!" << std::endl;
 		std::cout << "\t\033[1;36md[T_T]b [sobbing]\033[0m" << std::endl;
 		std::cout << std::endl;
 	}
@@ -113,25 +126,35 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_hitpoints > 0 && this->_energy > 0)
+	unsigned int	hpGained;
+	
+	if (this->_hitpoints == 10 && this->_energy > 0)
 	{
-		std::cout << "ClapTrap " << this->getName() << " repaired itself and got " << amount << " hitpoints back!" << std::endl;
-		std::cout << "\t\033[1;36md[o_0]b HOLY ****! IT ACTUALLY WORKED!\033[0m" << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " has full health and cannot repair itself!" << std::endl;
+		std::cout << "\t\033[1;36md[^_^]b Can I shoot something now? Or climb some stairs? SOMETHING exciting?\033[0m" << std::endl;
 		std::cout << std::endl;
-		this->_hitpoints += amount;
-		if (this->_hitpoints > 10)
-			this->_hitpoints = 10;
+	}
+	else if (this->_hitpoints > 0 && this->_energy > 0)
+	{
+		if (amount > 10 - this->_hitpoints)
+			hpGained = 10 - this->_hitpoints;
+		else
+			hpGained = amount;
+		std::cout << "ClapTrap " << this->getName() << " repaired itself and restored " << hpGained << " hitpoints!" << std::endl;
+		std::cout << "\t\033[1;36md[^_^]b HOLY ****! IT ACTUALLY WORKED!\033[0m" << std::endl;
+		std::cout << std::endl;
+		this->_hitpoints += hpGained;
 		this->_energy -= 1;
 	}
-	else if (this->_hitpoints <= 0)
+	else if (this->_hitpoints == 0)
 	{
-		std::cout << "ClapTrap " << this->getName() << " is fatally injured!" << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " is fatally injured and cannot repair itself!" << std::endl;
 		std::cout << "\t\033[1;36md[T_T]b [sobbing]\033[0m" << std::endl;
 		std::cout << std::endl;
 	}
-	else if (this->_energy <= 0)
+	else if (this->_energy == 0)
 	{
-		std::cout << "ClapTrap " << this->getName() << " has no energy points left!" << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " has no energy points left and cannot repair itself!" << std::endl;
 		std::cout << "\t\033[1;36md[X_x]b STAIRS?! NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!\033[0m" << std::endl;
 		std::cout << std::endl;
 	}
@@ -159,6 +182,21 @@ unsigned int	ClapTrap::getEnergy(void) const
 unsigned int	ClapTrap::getDamage(void) const
 {
 	return (this->_damage);
+}
+
+/* ************************************************************************** */
+/*                              Non-Member Functions                          */
+/* ************************************************************************** */
+
+std::ostream	&operator<<(std::ostream &o, const ClapTrap &obj)
+{
+	o << "ClapTrap " << obj.getName() << ": Fetching parameters!";
+	o << "\tHP: " << obj.getHitpoints();
+	o << "\tEN: " << obj.getEnergy();
+	o << "\tAD: " << obj.getDamage() << std::endl;
+	o << "\t\033[1;36md[o_0]b Allow me to introduce myself -- I am a CL4P-TP steward robot, but my friends call me Claptrap!\033[0m" << std::endl;
+	o << std::endl;
+	return (o);
 }
 
 /* ************************************************************************** */
