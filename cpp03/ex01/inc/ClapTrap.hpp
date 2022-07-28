@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:27:58 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 17:07:33 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 18:35:08 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@
 
 class	ClapTrap
 {
-private:
+protected:
 	std::string		_name;
 	unsigned int	_hitpoints;
 	unsigned int	_energy;
 	unsigned int	_damage;
+	unsigned int	_maxHitpoints;
 public:
 	ClapTrap();
 	ClapTrap(std::string name);
@@ -43,6 +44,7 @@ public:
 	unsigned int	getHitpoints(void) const;
 	unsigned int	getEnergy(void) const;
 	unsigned int	getDamage(void) const;
+	unsigned int	getMaxHitpoints(void) const;
 };
 
 std::ostream	&operator<<(std::ostream &o, const ClapTrap &obj);

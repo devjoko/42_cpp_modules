@@ -16,22 +16,22 @@ all: $(NAME)
 
 #Linking...
 $(NAME):	$(OBJS)
-			@echo "\033[1;33mƸ̵̡Ӝ̵̨̄Ʒ $(NAME)\033[0m \033[0;33mlinking.\033[0m"
+			@echo "\033[1;33m<|º감º|> $(NAME)\033[0m \033[0;33mlinking.\033[0m"
 			@$(CC) $(OBJS) -o $(NAME)
-			@echo "\033[1;35mƸ̵̡Ӝ̵̨̄Ʒ $(NAME)\033[0m \033[0;35mcreated.\033[0m"
+			@echo "\033[1;35m<|º감º|> $(NAME)\033[0m \033[0;35mcreated.\033[0m"
 
 # Compiling...
 $O%.o:		$S%.cpp
 			@[ -d $(O) ] || mkdir -p $(O)
-			@echo "\033[1;36mƸ̵̡Ӝ̵̨̄Ʒ $(NAME)\033[0m \033[0;36mcompiling.\033[0m"
+			@echo "\033[1;36m<|º감º|> $(NAME)\033[0m \033[0;36mcompiling.\033[0m"
 			@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 			@rm -rf $(O)
-			@echo "\033[1;31mƸ̵̡Ӝ̵̨̄Ʒ object files\033[0m \033[0;31mremoved.\033[0m"
+			@echo "\033[1;31m<|º감º|> object files\033[0m \033[0;31mremoved.\033[0m"
 
 fclean:		clean
 			@rm -f $(NAME)
-			@echo "\033[1;31mƸ̵̡Ӝ̵̨̄Ʒ $(NAME)\033[0m \033[0;31mremoved.\033[0m"
+			@echo "\033[1;31m<|º감º|> $(NAME)\033[0m \033[0;31mremoved.\033[0m"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:24:14 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/27 02:36:49 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 18:38:20 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #ifndef SCAVTRAP_H
 # define SCAVTRAP_H
 
-# include <string>
 # include "ClapTrap.hpp"
 
 /* ************************************************************************** */
@@ -25,13 +24,15 @@ class	ScavTrap: public ClapTrap
 {
 public:
 	ScavTrap();
-	ScavTrap( std::string name );
-	ScavTrap( ClapTrap const &base, ScavTrap const &derived );
-	// ScavTrap	&operator=( ClapTrap const &base);
+	ScavTrap(std::string name);
+	ScavTrap(const ScavTrap &copy);
+	ScavTrap	&operator=(const ScavTrap &assign);
 	~ScavTrap();
 
-	void	attack( const std::string &target );
-	void	guardGate( void );
+	void	attack(const std::string &target);
+	void	guardGate(void);
 };
+
+std::ostream	&operator<<(std::ostream &o, const ScavTrap &obj);
 
 #endif /* SCAVTRAP_H */

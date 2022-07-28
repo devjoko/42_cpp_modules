@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:46:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 17:08:13 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 18:36:02 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-ClapTrap::ClapTrap() : _name("default"), _hitpoints(10), _energy(10), _damage(0)
+ClapTrap::ClapTrap() : _name("default"), _hitpoints(10), _energy(10), _damage(0), _maxHitpoints(10)
 {
 	std::cout << "A default ClapTrap has been constructed." << std::endl;
 	std::cout << "\t\033[1;36md[o_0]b Aaaand OPEN!\033[0m" << std::endl;
@@ -28,7 +28,7 @@ ClapTrap::ClapTrap() : _name("default"), _hitpoints(10), _energy(10), _damage(0)
 	return ;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitpoints(10), _energy(10), _damage(0)
+ClapTrap::ClapTrap(std::string name) : _name(name), _hitpoints(10), _energy(10), _damage(0), _maxHitpoints(10)
 {
 	std::cout << "ClapTrap " << name << " has been constructed." << std::endl;
 	std::cout << "\t\033[1;36md[o_0]b Aaaand OPEN!\033[0m" << std::endl;
@@ -55,6 +55,7 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &assign)
 		this->_hitpoints = assign.getHitpoints();
 		this->_energy = assign.getEnergy();
 		this->_damage = assign.getDamage();
+		this->_maxHitpoints = assign.getMaxHitpoints();
 	}
 	return ( *this );
 }
@@ -128,7 +129,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	unsigned int	hpGained;
 	
-	if (this->_hitpoints == 10 && this->_energy > 0)
+	if (this->_hitpoints == _maxHitpoints && this->_energy > 0)
 	{
 		std::cout << "ClapTrap " << this->getName() << " has full health and cannot repair itself!" << std::endl;
 		std::cout << "\t\033[1;36md[^_^]b Can I shoot something now? Or climb some stairs? SOMETHING exciting?\033[0m" << std::endl;
@@ -136,8 +137,8 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	}
 	else if (this->_hitpoints > 0 && this->_energy > 0)
 	{
-		if (amount > 10 - this->_hitpoints)
-			hpGained = 10 - this->_hitpoints;
+		if (amount > _maxHitpoints - this->_hitpoints)
+			hpGained = _maxHitpoints - this->_hitpoints;
 		else
 			hpGained = amount;
 		std::cout << "ClapTrap " << this->getName() << " repaired itself and restored " << hpGained << " hitpoints!" << std::endl;
@@ -182,6 +183,11 @@ unsigned int	ClapTrap::getEnergy(void) const
 unsigned int	ClapTrap::getDamage(void) const
 {
 	return (this->_damage);
+}
+
+unsigned int	ClapTrap::getMaxHitpoints(void) const
+{
+	return (this->_maxHitpoints);
 }
 
 /* ************************************************************************** */
