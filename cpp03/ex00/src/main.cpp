@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:03:26 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 16:59:52 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 17:03:17 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,5 @@ int	main(void)
 		std::cout << claptrap;
 	}
 
-
 	return (0);
 }
-
-// yellow pink for other claptraps
-// borderlands2 videos for quotes
-// ascii line art ROBOTS
