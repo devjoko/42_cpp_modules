@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:27:58 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/27 00:59:24 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 02:22:05 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #ifndef CLAPTRAP_H
 # define CLAPTRAP_H
 
+# include <iostream>
 # include <string>
 
 /* ************************************************************************** */
@@ -23,26 +24,25 @@
 class	ClapTrap
 {
 private:
-	std::string	name_; // const ?
-	int			hitPoints_;
-	int			energyPoints_;
-	int			attackDamage_;
+	std::string		_name;
+	unsigned int	_hitpoints;
+	unsigned int	_energy;
+	unsigned int	_damage;
 public:
 	ClapTrap();
-	ClapTrap( const std::string &name );
-	ClapTrap( ClapTrap const &copy );
-	ClapTrap	&operator=( ClapTrap const &clapTrap );
+	ClapTrap(std::string name);
+	ClapTrap(const ClapTrap &copy);
+	ClapTrap	&operator=(const ClapTrap &assign);
 	~ClapTrap();
 
-	void	attack( const std::string &target );
-	void	takeDamage( unsigned int amount );
-	void	beRepaired( unsigned int amount );
+	void	attack(const std::string &target);
+	void	takeDamage(unsigned int amount);
+	void	beRepaired(unsigned int amount);
 
-	std::string	getName( void ) const;
-	int			getHitPoints( void ) const;
-	int			getEnergyPoints( void ) const;
-	int			getAttackDamage( void ) const;
+	std::string		getName(void) const;
+	unsigned int	getHitpoints(void) const;
+	unsigned int	getEnergy(void) const;
+	unsigned int	getDamage(void) const;
 };
-
 
 #endif /* CLAPTRAP_H */

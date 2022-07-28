@@ -6,56 +6,64 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:46:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/27 01:20:47 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 03:22:34 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/ClapTrap.hpp"
+
+/* ************************************************************************** */
+/*                                 ClapTrap Class                             */
+/* ************************************************************************** */
 
 /* ************************************************************************** */
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-/*	DEFAULT CONSTRUCTOR	*/
-ClapTrap::ClapTrap() : name_(""), hitPoints_ (10), energyPoints_ (10), attackDamage_(0)
+ClapTrap::ClapTrap() : _name("default"), _hitpoints(10), _energy(10), _damage(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "A default ClapTrap has been constructed." << std::endl;
+	std::cout << "\t\033[1;36md[o_0]b Aaaand OPEN!\033[0m" << std::endl;
+	std::cout << std::endl;
 	return ;
 }
 
-/*	PARAMETRIC CONSTRUCTOR	*/
-ClapTrap::ClapTrap( const std::string &name ) : name_(name), hitPoints_(10), energyPoints_(10), attackDamage_(0)
+ClapTrap::ClapTrap(std::string name) : _name(name), _hitpoints(10), _energy(10), _damage(0)
 {
-	std::cout << "Parametric constructor called" << std::endl;
+	std::cout << "ClapTrap " << name << " has been constructed." << std::endl;
+	std::cout << "\t\033[1;36md[o_0]b Aaaand OPEN!\033[0m" << std::endl;
+	std::cout << std::endl;
 	return ;
 }
 
-/*	COPY CONSTRUCTOR	*/
-ClapTrap::ClapTrap( ClapTrap const &copy )
+ClapTrap::ClapTrap(const ClapTrap &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "ClapTrap has been copy constructed from " << copy.getName() << "." << std::endl;
+	std::cout << "\t\033[1;36md[o_0]b Aaaand OPEN!\033[0m" << std::endl;
+	std::cout << std::endl;
 	*this = copy;
 }
 
-/*	COPY ASSIGNMENT OPERATOR OVERLOAD	*/
-ClapTrap	&ClapTrap::operator=( ClapTrap const &clapTrap )
+ClapTrap	&ClapTrap::operator=(const ClapTrap &assign)
 {
-	std::cout << "Copy assignment operator overload called" << std::endl;
-	if (this != &clapTrap)
+	if (this != &assign)
 	{
-		this->name_ = clapTrap.getName();
-		this->hitPoints_ = clapTrap.getHitPoints();
-		this->energyPoints_ = clapTrap.getEnergyPoints();
-		this->attackDamage_ = clapTrap.getAttackDamage();
+		std::cout << "ClapTrap has been assigned from " << assign.getName() << "." << std::endl;
+		std::cout << "\t\033[1;36md[o_0]b Aaaand OPEN!\033[0m" << std::endl;
+		std::cout << std::endl;
+		this->_name = assign.getName();
+		this->_hitpoints = assign.getHitpoints();
+		this->_energy = assign.getEnergy();
+		this->_damage = assign.getDamage();
 	}
 	return ( *this );
 }
 
-/*	DESTRUCTOR	*/
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "ClapTrap " << this->getName() << " has been left behind."<< std::endl;
+	std::cout << "\t\033[1;36md[x_X]b Do your master proud!\033[0m" << std::endl;
+	std::cout << std::endl;
 	return ;
 }
 
@@ -63,55 +71,96 @@ ClapTrap::~ClapTrap()
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void	ClapTrap::attack( const std::string &target )
+void	ClapTrap::attack(const std::string &target)
 {
-	std::cout << "ClapTrap " << this->getName() << " attacks " << target << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
-}
-
-void	ClapTrap::takeDamage( unsigned int amount )
-{
-	if (this->energyPoints_ > 0)
+	if (this->_hitpoints > 0 && this->_energy > 0)
 	{
-		std::cout << "ClapTrap is wounded!" << std::endl;
-		this->hitPoints_ -= amount;
+		std::cout << "ClapTrap " << this->getName() << " attacks " << target << ", causing " << this->getDamage() << " points of damage!" << std::endl;
+		std::cout << "\t\033[1;36md[o_0]b What?! I said \"AAAAAND open!\"\033[0m" << std::endl;
+		std::cout << std::endl;
+		this->_energy -= 1;
 	}
-	else
+	else if (this->_hitpoints <= 0)
 	{
-		std::cout << "ClapTrap has no hit points left and can't do anything." << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " is fatally injured!" << std::endl;
+		std::cout << "\t\033[1;36md[T_T]b [sobbing]\033[0m" << std::endl;
+		std::cout << std::endl;
 	}
-}
-
-void	ClapTrap::beRepaired( unsigned int amount )
-{
-	if (this->energyPoints_  > 0)
+	else if (this->_energy <= 0)
 	{
-		std::cout << "ClapTrap repairs itself!" << std::endl;
-		this->hitPoints_ += amount;
-		this->energyPoints_ -= 1;
-	}
-	else
-	{
-		std::cout << "ClapTrap has no energy points left and can't do anything." << std::endl;
+		std::cout << "ClapTrap " << this->getName() << " has no energy points left!" << std::endl;
+		std::cout << "\t\033[1;36md[X_x]b STAIRS?! NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!\033[0m" << std::endl;
+		std::cout << std::endl;
 	}
 }
 
-/*	GETTER	*/
-std::string	ClapTrap::getName( void ) const
+void	ClapTrap::takeDamage(unsigned int amount)
 {
-	return ( this->name_ );
+	if (this->_hitpoints > 0)
+	{
+		this->_hitpoints -= amount;
+		std::cout << "ClapTrap " << this->getName() << " has taken damage and lost " << amount << " hitpoints!" << std::endl;
+		std::cout << "\t\033[1;36md[o_0]b NO! Don't dispatch MORE troops! I'm sorry! I'm sorry pretty female voice!\033[0m" << std::endl;
+		std::cout << std::endl;
+	}
+	else if (this->_hitpoints <= 0)
+	{
+		std::cout << "ClapTrap " << this->getName() << " is fatally injured!" << std::endl;
+		std::cout << "\t\033[1;36md[T_T]b [sobbing]\033[0m" << std::endl;
+		std::cout << std::endl;
+	}
 }
 
-int	ClapTrap::getHitPoints( void ) const
+void	ClapTrap::beRepaired(unsigned int amount)
 {
-	return ( this->hitPoints_ );
+	if (this->_hitpoints > 0 && this->_energy > 0)
+	{
+		std::cout << "ClapTrap " << this->getName() << " repaired itself and got " << amount << " hitpoints back!" << std::endl;
+		std::cout << "\t\033[1;36md[o_0]b HOLY ****! IT ACTUALLY WORKED!\033[0m" << std::endl;
+		std::cout << std::endl;
+		this->_hitpoints += amount;
+		if (this->_hitpoints > 10)
+			this->_hitpoints = 10;
+		this->_energy -= 1;
+	}
+	else if (this->_hitpoints <= 0)
+	{
+		std::cout << "ClapTrap " << this->getName() << " is fatally injured!" << std::endl;
+		std::cout << "\t\033[1;36md[T_T]b [sobbing]\033[0m" << std::endl;
+		std::cout << std::endl;
+	}
+	else if (this->_energy <= 0)
+	{
+		std::cout << "ClapTrap " << this->getName() << " has no energy points left!" << std::endl;
+		std::cout << "\t\033[1;36md[X_x]b STAIRS?! NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!\033[0m" << std::endl;
+		std::cout << std::endl;
+	}
 }
 
-int	ClapTrap::getEnergyPoints( void ) const
+/* ************************************************************************** */
+/*                                   Accessor                                 */
+/* ************************************************************************** */
+
+std::string	ClapTrap::getName(void) const
 {
-	return ( this->energyPoints_ );
+	return (this->_name);
 }
 
-int	ClapTrap::getAttackDamage( void ) const
+unsigned int	ClapTrap::getHitpoints(void) const
 {
-	return ( this->attackDamage_ );
+	return (this->_hitpoints);
 }
+
+unsigned int	ClapTrap::getEnergy(void) const
+{
+	return (this->_energy);
+}
+
+unsigned int	ClapTrap::getDamage(void) const
+{
+	return (this->_damage);
+}
+
+/* ************************************************************************** */
+/*                                 ClapTrap Class                             */
+/* ************************************************************************** */
