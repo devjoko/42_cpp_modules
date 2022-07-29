@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:45:44 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 19:37:15 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/28 22:22:07 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ FragTrap::FragTrap() : ClapTrap()
 	this->_damage = 30;
 	this->_maxHitpoints = 100;
 	std::cout << "A default FragTrap has been constructed." << std::endl;
-	std::cout << "\t\033[1;35mc[○┬●]כ Look out everybody! Things are about to get awesome!\033[0m" << std::endl;
+	std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
 	std::cout << std::endl;
 	return ;
 }
@@ -39,7 +39,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	this->_damage = 30;
 	this->_maxHitpoints = 100;
 	std::cout << "FragTrap " << name << " has been constructed." << std::endl;
-	std::cout << "\t\033[1;35mc[○┬●]כ Look out everybody! Things are about to get awesome!\033[0m" << std::endl;
+	std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
 	std::cout << std::endl;
 	return ;
 }
@@ -47,7 +47,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 FragTrap::FragTrap(FragTrap const &copy)
 {
 	std::cout << "FragTrap has been copy constructed from " << copy.getName() << "." << std::endl;
-	std::cout << "\t\033[1;35mc[○┬●]כ Look out everybody! Things are about to get awesome!\033[0m" << std::endl;
+	std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
 	std::cout << std::endl;
 	*this = copy;
 	return ;
