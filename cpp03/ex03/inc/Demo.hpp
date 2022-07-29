@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*   Demo.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 01:24:14 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 19:18:00 by jpfuhl           ###   ########.fr       */
+/*   Created: 2022/07/29 20:09:22 by jpfuhl            #+#    #+#             */
+/*   Updated: 2022/07/29 20:48:14 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef DIAMONDTRAP_H
-# define DIAMONDTRAP_H
+#ifndef DEMO_H
+# define DEMO_H
 
-# include "ScavTrap.hpp"
-# include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 /* ************************************************************************** */
-/*                                DiamondTrap Class                           */
+/*                                   Demo Class                               */
 /* ************************************************************************** */
 
-class	DiamondTrap : public ScavTrap, public FragTrap
+class	Demo
 {
 private:
-	std::string	_name;
+	bool	_demoRunning;
+
+	void	_printInfo();
+	bool	_checkInput(std::string input, int &index);
+	void	_chooseExample(int index);
+	void	_showHybridInheritance(void);
+	void	_showConstructor(void);
+	void	_showDeath(void);
+	void	_showInheritedFunctions(void);
+	void	_showFight(void);
+	void	_exitDemo(void);
 public:
-	DiamondTrap();
-	DiamondTrap(std::string name);
-	DiamondTrap(const DiamondTrap &copy);
-	DiamondTrap	&operator=(const DiamondTrap &assign);
-	~DiamondTrap();
+	Demo();
+	Demo(const Demo &copy);
+	Demo	&operator=(const Demo &assign);
+	~Demo();
 
-	void	attack(const std::string &target);
-	void	whoAmI(void);
+	void	runDemo(void);
 
-	std::string	getDiamondName(void) const;
+	bool	getStatus(void) const;
 };
 
-std::ostream	&operator<<(std::ostream &o, const DiamondTrap &obj);
-
-#endif /* DIAMONDTRAP_H */
+#endif /* DEMO_H */

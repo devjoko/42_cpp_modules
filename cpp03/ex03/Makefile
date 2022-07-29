@@ -7,6 +7,7 @@ S		= src/
 
 OBJS	= $(patsubst $S%.cpp, $O%.o, $(SRCS))
 SRCS	=	$Smain.cpp \
+			$SDemo.cpp \
 			$SClapTrap.cpp \
 			$SScavTrap.cpp \
 			$SFragTrap.cpp \

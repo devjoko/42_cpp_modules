@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:45:44 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 02:31:51 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/29 19:02:54 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap() : ClapTrap(), _scavHp(100), _scavEn(50), _scavDmg(20)
 {
 	this->_hitpoints = 100;
 	this->_energy = 50;
@@ -32,7 +32,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 	return ;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name), _scavHp(100), _scavEn(50), _scavDmg(20)
 {
 	this->_hitpoints = 100;
 	this->_energy = 50;
@@ -44,7 +44,7 @@ ScavTrap::ScavTrap(std::string name)
 	return ;
 }
 
-ScavTrap::ScavTrap(ScavTrap const &copy)
+ScavTrap::ScavTrap(ScavTrap const &copy) : _scavHp(100), _scavEn(50), _scavDmg(20)
 {
 	std::cout << "ScavTrap has been copy constructed from " << copy.getName() << "." << std::endl;
 	std::cout << "\t\033[1;33m<|º감º|> I've been chosen to stand out here -- far, far away from everyone else!\033[0m" << std::endl;

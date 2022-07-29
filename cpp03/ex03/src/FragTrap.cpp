@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:45:44 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 02:32:02 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/29 19:02:23 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap(), _fragHp(100), _fragEn(100), _fragDmg(30)
 {
 	this->_hitpoints = 100;
 	this->_energy = 100;
@@ -32,7 +32,7 @@ FragTrap::FragTrap()
 	return ;
 }
 
-FragTrap::FragTrap(std::string name)
+FragTrap::FragTrap(std::string name) : ClapTrap(name), _fragHp(100), _fragEn(100), _fragDmg(30)
 {
 	this->_hitpoints = 100;
 	this->_energy = 100;
@@ -41,11 +41,10 @@ FragTrap::FragTrap(std::string name)
 	std::cout << "FragTrap " << name << " has been constructed." << std::endl;
 	std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
 	std::cout << std::endl;
-	std::cout << *this << std::endl;
 	return ;
 }
 
-FragTrap::FragTrap(FragTrap const &copy)
+FragTrap::FragTrap(FragTrap const &copy) : _fragHp(100), _fragEn(100), _fragDmg(30)
 {
 	std::cout << "FragTrap has been copy constructed from " << copy.getName() << "." << std::endl;
 	std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
