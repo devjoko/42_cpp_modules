@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 22:50:39 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/30 15:22:13 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ Dog	&Dog::operator=(const Dog &assign)
 Dog::~Dog()
 {
 	std::cout << "DOG : Destructor" << std::endl;
-	delete this;
 	return ;
 }
 

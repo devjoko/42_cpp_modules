@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 23:03:59 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 23:37:35 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/30 17:23:17 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &assign)
 WrongAnimal::~WrongAnimal()
 {
 	std::cout << "WrongAnimal : Destructor" << std::endl;
-	delete this;
 	return ;
 }
 

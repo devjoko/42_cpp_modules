@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 23:22:22 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/30 17:23:20 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ WrongCat	&WrongCat::operator=(const WrongCat &assign)
 WrongCat::~WrongCat()
 {
 	std::cout << "WrongCat : Destructor" << std::endl;
-	delete this;
 	return ;
 }
 
@@ -64,7 +63,7 @@ WrongCat::~WrongCat()
 
 void	WrongCat::makeSound(void) const
 {
-	std::cout << "Meowz!" << std::endl;
+	std::cout << "WrongCat makes \"Meowz!\"" << std::endl;
 }
 
 /* ************************************************************************** */

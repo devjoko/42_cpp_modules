@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 23:22:44 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/07/30 15:22:23 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ Animal	&Animal::operator=(const Animal &assign)
 Animal::~Animal()
 {
 	std::cout << "ANIMAL : Destructor" << std::endl;
-	delete this;
 	return ;
 }
 
