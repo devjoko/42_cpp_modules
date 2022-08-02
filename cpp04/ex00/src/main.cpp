@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:43:52 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/30 17:35:59 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/02 19:41:53 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,31 @@
 
 int	main(void)
 {
-	// What was the correct term again ? run-time function call?
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                             WITH VIRTUAL FUNCTION                          */" << std::endl;
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 	{
+		std::cout << "CALLING CONSTRUCTOR:" << std::endl;
 		const Animal*	meta = new Animal();
 		const Animal*	j = new Dog();
 		const Animal*	i = new Cat();
+		std::cout << std::endl;
 
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		std::cout << meta->getType() << " " << std::endl;
-		i->makeSound(); //will output the cat sound!
+		std::cout << "TYPES:" << std::endl;
+		std::cout << "j is a \"" << j->getType() << "\"" << std::endl;
+		std::cout << "i is a \"" << i->getType() << "\"" << std::endl;
+		std::cout << "meta is a \"" << meta->getType() << "\"" << std::endl;
+		std::cout << std::endl;
+
+
+		std::cout << "ANIMAL SOUNDS:" << std::endl;
+		i->makeSound();
 		j->makeSound();
 		meta->makeSound();
-		// system("leaks animal");
 		std::cout << std::endl;
+		
+		std::cout << "CALLING DESTRUCTOR:" << std::endl;
 		delete meta;
 		delete j;
 		delete i;
@@ -55,6 +62,7 @@ int	main(void)
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                           WITHOUT VIRTUAL FUNCTIONS                        */" << std::endl;
 	std::cout << "/* ************************************************************************** */" << std::endl;
+	std::cout << std::endl;
 	{
 		std::cout << "CALLING CONSTRUCTOR:" << std::endl;
 		const WrongAnimal*	meta = new WrongAnimal();
@@ -62,12 +70,12 @@ int	main(void)
 		std::cout << std::endl;
 
 		std::cout << "TYPES:" << std::endl;
-		std::cout << "WrongAnimal is a \"" << meta->getType() << "\"" << std::endl;
-		std::cout << "WrongCat is a \"" << i->getType() << "\"" << std::endl;
+		std::cout << "meta is a \"" << meta->getType() << "\"" << std::endl;
+		std::cout << "i is a \"" << i->getType() << "\"" << std::endl;
 		std::cout << std::endl;
 
 		std::cout << "ANIMAL SOUNDS:" << std::endl;
-		meta->makeSound(); //will output the cat sound!
+		meta->makeSound();
 		i->makeSound();
 		std::cout << std::endl;
 
@@ -76,7 +84,8 @@ int	main(void)
 		delete meta;
 		delete i;
 	}
+
+	std::cout << std::endl;
+
 	return (0);
 }
-
-// verstehe nicht, ob das schon vollstaendig ist oder korrekt so ??

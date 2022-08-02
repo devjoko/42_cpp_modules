@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/30 15:22:13 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/02 19:28:17 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,28 @@
 
 Dog::Dog() : Animal()
 {
-	std::cout << "DOG : Default constructor" << std::endl;
+	std::cout << "Default constructor of \"Dog\"" << std::endl;
 	this->_type = "Dog";
 	return ;
 }
 
 Dog::Dog(std::string type) : Animal(type)
 {
-	std::cout << "DOG : Parametric constructor" << std::endl;
+	std::cout << "Parametric constructor of \"Dog\"" << std::endl;
 	this->_type = "Dog";
 	return ;
 }
 
 Dog::Dog(const Dog &copy)
 {
-	std::cout << "DOG : Copy constructor" << std::endl;
+	std::cout << "Copy constructor of \"DOG\"" << std::endl;
 	*this = copy;
 	return ;
 }
 
 Dog	&Dog::operator=(const Dog &assign)
 {
-	std::cout << "DOG : Assignment operator overload" << std::endl;
+	std::cout << "Assignment operator overload of \"Dog\"" << std::endl;
 	if (this != &assign)
 	{
 		this->_type = assign.getType();
@@ -53,7 +53,7 @@ Dog	&Dog::operator=(const Dog &assign)
 
 Dog::~Dog()
 {
-	std::cout << "DOG : Destructor" << std::endl;
+	std::cout << "Destructor of \"Dog\"" << std::endl;
 	return ;
 }
 
@@ -63,7 +63,7 @@ Dog::~Dog()
 
 void	Dog::makeSound(void) const
 {
-	std::cout << "Woooooff!!" << std::endl;
+	std::cout << "Dog makes \"Woooooff!!\"" << std::endl;
 }
 
 /* ************************************************************************** */

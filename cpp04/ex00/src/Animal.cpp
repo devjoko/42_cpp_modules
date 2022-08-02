@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/30 15:22:23 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/02 19:33:03 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,26 @@
 
 Animal::Animal() : _type("")
 {
-	std::cout << "ANIMAL : Default constructor" << std::endl;
+	std::cout << "Default construtor of \"Animal\"" << std::endl;
 	return ;
 }
 
 Animal::Animal(std::string type) : _type(type)
 {
-	std::cout << "ANIMAL : Parametric constructor" << std::endl;
+	std::cout << "Parametric constructor of \"Animal\"" << std::endl;
 	return ;
 }
 
 Animal::Animal(const Animal &copy)
 {
-	std::cout << "ANIMAL : Copy constructor" << std::endl;
+	std::cout << "Copy constructor of \"Animal\"" << std::endl;
 	*this = copy;
 	return ;
 }
 
 Animal	&Animal::operator=(const Animal &assign)
 {
-	std::cout << "ANIMAL : Assignment operator overload" << std::endl;
+	std::cout << "Assignment uperator uverload of \"Animal\"" << std::endl;
 	if (this != &assign)
 	{
 		this->_type = assign.getType();
@@ -51,7 +51,7 @@ Animal	&Animal::operator=(const Animal &assign)
 
 Animal::~Animal()
 {
-	std::cout << "ANIMAL : Destructor" << std::endl;
+	std::cout << "Destructor of \"Animal\"" << std::endl;
 	return ;
 }
 
