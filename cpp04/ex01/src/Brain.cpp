@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 20:27:28 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/04 20:39:24 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Brain::Brain(const Brain &copy)
 
 Brain	&Brain::operator=(const Brain &assign)
 {
-	std::cout << "Assignment operator overload of \"Brain\"" << std::endl;
+	std::cout << "Copy assignment operator of \"Brain\"" << std::endl;
 	if (this != &assign)
 	{
 		for (int i = 0; i < 100; i++)

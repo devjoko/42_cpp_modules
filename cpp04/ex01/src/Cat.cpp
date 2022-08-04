@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 22:08:56 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/04 20:42:38 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ Cat	&Cat::operator=(const Cat &assign)
 	if (this != &assign)
 	{
 		this->_type = assign._type;
-		this->_brain = new Brain();
 		*this->_brain = *assign._brain;
 	}
 	return (*this);
@@ -71,6 +70,11 @@ Cat::~Cat()
 void	Cat::makeSound(void) const
 {
 	std::cout << "Cat makes \"Meeeooow!!\"" << std::endl;
+}
+
+void	Cat::printBrain(void)
+{
+	std::cout << "Brain Address: " << &this->_brain << std::endl;
 }
 
 /* ************************************************************************** */

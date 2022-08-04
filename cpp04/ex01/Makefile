@@ -10,8 +10,6 @@ SRCS	=	$Smain.cpp \
 			$SAnimal.cpp \
 			$SDog.cpp \
 			$SCat.cpp \
-			$SWrongAnimal.cpp \
-			$SWrongCat.cpp \
 			$SBrain.cpp \
 
 .PHONY: all clean fclean re

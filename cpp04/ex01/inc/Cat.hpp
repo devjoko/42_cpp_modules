@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:38:11 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 20:27:12 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/04 20:43:09 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ public:
 	~Cat();
 
 	void	makeSound(void) const;
+	void	printBrain(void);
 };
 
 #endif /* CAT_H */

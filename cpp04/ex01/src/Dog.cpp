@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 22:08:10 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/04 20:54:53 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Dog::Dog(std::string type) : Animal(type)
 
 Dog::Dog(const Dog &copy)
 {
-	std::cout << "Copy constructor of \"DOG\"" << std::endl;
+	std::cout << "Copy constructor of \"Dog\"" << std::endl;
 	this->_type = copy._type;
 	this->_brain = new Brain();
 	*this->_brain = *copy._brain;
@@ -51,7 +51,6 @@ Dog	&Dog::operator=(const Dog &assign)
 	if (this != &assign)
 	{
 		this->_type = assign._type;
-		this->_brain = new Brain();
 		*this->_brain = *assign._brain;
 	}
 	return (*this);
