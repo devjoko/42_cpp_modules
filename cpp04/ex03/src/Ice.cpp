@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 22:57:26 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/30 18:10:11 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,48 @@
 /* ************************************************************************** */
 
 Ice::Ice()
+: AMateria()
 {
 	std::cout << "Default Constructor Ice" << std::endl;
 	this->_type = "ice";
-	return ;
+}
+
+Ice::Ice(std::string const &type)
+: AMateria(type)
+{
+	std::cout << "Parametric Constructor Ice" << std::endl;
+	this->_type = "ice"; // really need to overwrite ?
+}
+
+Ice::Ice(const Ice &rhs)
+{
+	this->_type = rhs._type;
+}
+
+Ice	&Ice::operator=(const Ice &rhs)
+{
+	if (this != &rhs)
+	{
+		this->_type = rhs._type;
+	}
+	return (*this);
 }
 
 Ice::~Ice()
 {
 	std::cout << "Destructor Ice" << std::endl;
-	return ;
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
+
+AMateria	*Ice::clone(void) const
+{
+	AMateria	*ice = new Ice("ice");
+
+	return (ice);
+}
 
 void	Ice::use(ICharacter &target)
 {

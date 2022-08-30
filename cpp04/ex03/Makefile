@@ -7,6 +7,11 @@ S		= src/
 
 OBJS	= $(patsubst $S%.cpp, $O%.o, $(SRCS))
 SRCS	=	$Smain.cpp \
+			$SAMateria.cpp \
+			$SICharacter.cpp \
+			$SCharacter.cpp \
+			$SIce.cpp \
+			$SCure.cpp \
 
 .PHONY: all clean fclean re
 

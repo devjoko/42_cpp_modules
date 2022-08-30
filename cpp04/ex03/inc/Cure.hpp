@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 22:51:40 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 22:52:30 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/08/30 18:17:12 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@
 /*                                    Cure Class                              */
 /* ************************************************************************** */
 
-class	Cure : public AMateria
+class	Cure : virtual public AMateria // do i have to write virtual ?
 {
 public:
 	Cure();
+	Cure(std::string const &type);
+	Cure(const Cure &rhs);
+	Cure &operator=(const Cure &rhs);
 	~Cure();
 
+	AMateria * clone(void) const;
 	void	use(ICharacter &target);
 };
 
