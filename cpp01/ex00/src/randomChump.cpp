@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 23:00:38 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/20 23:03:13 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:06:09 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	randomChump( std::string name )
 {
-	Zombie	randomChump;
+	Zombie randomChump;
 
 	randomChump.setName(name);
 	randomChump.announce();

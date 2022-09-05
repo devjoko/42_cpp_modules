@@ -6,43 +6,57 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:51:32 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/21 18:55:13 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:06:00 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/Zombie.hpp"
 
-/*	CONSTRUCTOR	*/
-Zombie::Zombie( void )
+/* ************************************************************************** */
+/*                                Zombie Class                                */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                        Orthodox Canonical Class Form                       */
+/* ************************************************************************** */
+
+Zombie::Zombie(void)
 {
 	std::cout << "A new zombie arrived into this world!" << std::endl;
-	this->name = "";
+	this->_name = "";
 	return ;
 }
 
-/*	DECONSTRUCTOR	*/
-Zombie::~Zombie( void )
+Zombie::~Zombie(void)
 {
 	std::cout << "R.I.P. : " << this->getName() << " has been killed.. Graargh!!" << std::endl;
 	return ;
 }
 
-/*	METHODS	*/
-void	Zombie::announce( void )
+/* ************************************************************************** */
+/*                                Member Functions                            */
+/* ************************************************************************** */
+
+void	Zombie::announce(void)
 {
-	std::cout << this->getName() << ": ";
+	std::cout << this->_name << ": ";
 	std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-/*	SETTER	*/
-void	Zombie::setName( std::string name )
+/* ************************************************************************** */
+/*                                   Accessor                                 */
+/* ************************************************************************** */
+
+void	Zombie::setName(std::string name)
 {
-	this->name = name;
+	this->_name = name;
 }
 
-/*	GETTER	*/
-std::string	Zombie::getName( void ) const
+std::string	Zombie::getName(void) const
 {
-	return (this->name);
+	return (this->_name);
 }
+
+/* ************************************************************************** */
+/*                                Zombie Class                                */
+/* ************************************************************************** */
