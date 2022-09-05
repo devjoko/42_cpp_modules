@@ -6,14 +6,13 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 17:06:50 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/25 19:08:12 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:14:41 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/Harl.hpp"
 
-int	main(void)
+int main(void)
 {
 	Harl harl = Harl();
 
