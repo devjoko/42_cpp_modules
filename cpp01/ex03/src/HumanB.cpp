@@ -6,26 +6,49 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 01:18:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/22 19:03:20 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:47:30 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/HumanB.hpp"
+#include "../inc/Weapon.hpp"
 
-/*	CONSTRUCTOR	*/
-HumanB::HumanB( std::string name ) : name(name), weapon(nullptr) { return ; }
+/* ************************************************************************** */
+/*                                HumanB Class                                */
+/* ************************************************************************** */
 
-/*	DECONSTRUCTOR	*/
-HumanB::~HumanB() { return ; }
+/* ************************************************************************** */
+/*                                 Class Form                                 */
+/* ************************************************************************** */
 
-/*	METHODS	*/
-void	HumanB::attack( void ) const
+HumanB::HumanB(std::string name)
+: _name(name), _weapon(nullptr)
 {
-	std::cout << this->name << " attacks with their " << this->weapon->getType() << std::endl;
+	std::cout << "Constructor HumanB" << std::endl;
 }
 
-void	HumanB::setWeapon( Weapon &weapon )
+HumanB::~HumanB()
 {
-	this->weapon = &weapon;
+	std::cout << "Destructor HumanB" << std::endl;
 }
+
+/* ************************************************************************** */
+/*                                   Accessor                                 */
+/* ************************************************************************** */
+
+void HumanB::attack(void) const
+{
+	if (this->_weapon == nullptr)
+		std::cout << this->_name << " has no weapon equipped." << std::endl;
+	else
+		std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
+}
+
+void HumanB::setWeapon(Weapon &weapon)
+{
+	this->_weapon = &weapon;
+}
+
+/* ************************************************************************** */
+/*                                HumanB Class                                */
+/* ************************************************************************** */

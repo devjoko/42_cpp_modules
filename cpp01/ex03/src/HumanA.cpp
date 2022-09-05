@@ -6,21 +6,42 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 01:18:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/22 18:58:16 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:44:40 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/HumanA.hpp"
+# include "../inc/Weapon.hpp"
 
-/*	CONSTRUCTOR	*/
-HumanA::HumanA( std::string name, Weapon &weapon ) : name(name), weapon(weapon) { return ; }
 
-/*	DECONSTRUCTOR	*/
-HumanA::~HumanA() { return ; }
+/* ************************************************************************** */
+/*                                HumanA Class                                */
+/* ************************************************************************** */
 
-/*	METHODS	*/
-void	HumanA::attack(void) const
+/* ************************************************************************** */
+/*                                 Class Form                                 */
+/* ************************************************************************** */
+
+HumanA::HumanA(std::string name, Weapon &weapon)
+: _name(name), _weapon(weapon)
 {
-	std::cout << this->name << " attacks with their " << this->weapon.getType() << std::endl;
+	std::cout << "Constructor HumanA" << std::endl;
 }
+
+HumanA::~HumanA()
+{
+	std::cout << "Destructor HumanA" << std::endl;
+}
+
+/* ************************************************************************** */
+/*                                   Accessor                                 */
+/* ************************************************************************** */
+
+void HumanA::attack(void) const
+{
+	std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
+}
+
+/* ************************************************************************** */
+/*                                HumanA Class                                */
+/* ************************************************************************** */

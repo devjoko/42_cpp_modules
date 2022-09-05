@@ -6,32 +6,34 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 23:57:55 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/22 19:05:45 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:35:27 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef HUMANB_H
-# define HUMANB_H
+#ifndef HUMAN_B_H
+# define HUMAN_B_H
 
+# include <iostream>
 # include <string>
-# include "Weapon.hpp"
 
 /* ************************************************************************** */
 /*                                HumanB Class                                */
 /* ************************************************************************** */
 
-class	HumanB
+class Weapon;
+
+class HumanB
 {
 private:
-	std::string	name;
-	Weapon		*weapon;
+	std::string _name;
+	Weapon* _weapon;
 public:
-	HumanB( std::string name );
+	HumanB(std::string name);
 	~HumanB();
 
-	void	attack( void ) const;
-	void	setWeapon( Weapon &weapon );
+	void attack(void) const;
+	void setWeapon(Weapon &weapon);
 };
 
-#endif /* HUMANB_H */
+#endif /* HUMAN_B_H */

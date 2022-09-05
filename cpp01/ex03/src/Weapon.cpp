@@ -6,29 +6,45 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 23:50:03 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/22 19:08:56 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:39:28 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/Weapon.hpp"
 
-/*	CONSTRUCTOR	*/
+/* ************************************************************************** */
+/*                                Weapon Class                                */
+/* ************************************************************************** */
 
-Weapon::Weapon(std::string type) : type(type) { return ; }
+/* ************************************************************************** */
+/*                                 Class Form                                 */
+/* ************************************************************************** */
 
-/*	DECONSTRUCTOR	*/
-Weapon::~Weapon() { return ; }
-
-/*	SETTER	*/
-void	Weapon::setType(std::string type)
+Weapon::Weapon(std::string type)
+: _type(type)
 {
-	this->type = type;
+	std::cout << "Constructor Weapon" << std::endl;
 }
 
-/*	GETTER	*/
-const std::string&	Weapon::getType(void) const
+Weapon::~Weapon()
 {
-	return (this->type);
-	// is this correct? return const reference to type
+	std::cout << "Destructor Weapon" << std::endl;
 }
+
+/* ************************************************************************** */
+/*                                   Accessor                                 */
+/* ************************************************************************** */
+
+void Weapon::setType(std::string type)
+{
+	this->_type = type;
+}
+
+const std::string& Weapon::getType(void) const
+{
+	return (this->_type);
+}
+
+/* ************************************************************************** */
+/*                                Weapon Class                                */
+/* ************************************************************************** */
