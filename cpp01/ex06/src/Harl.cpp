@@ -6,33 +6,39 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 17:00:14 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/25 19:39:04 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:27:47 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/Harl.hpp"
 
-/*	CONSTRUCTOR	*/
+/* ************************************************************************** */
+/*                                  Harl Class                                */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                 Class Form                                 */
+/* ************************************************************************** */
+
 Harl::Harl()
 {
+	std::cout << "( ͡° ͜ʖ ͡°)" << std::endl;
 	std::cout << "Harl enters the burger restaurant." << std::endl;
-	std::cout << std::endl;
-	std::cout << "( ͡° ͜ʖ ͡°)\t\"Hi! I'd like to order a burger!" << std::endl;
-	return ;
+	std::cout << "Hi! I'd like to order a burger!" << std::endl;
 }
 
-/*	DESTRUCTOR	*/
 Harl::~Harl()
 {
 	std::cout << std::endl;
 	std::cout << "⌐(ಠ۾ಠ)╯︵ ┻━┻" << std::endl;
 	std::cout << "Harl has left the burger restaurant." << std::endl;
-	return ;
 }
 
-/*	PRIVATE MEMBER FUNCTIONS	*/
-void	Harl::debug( void )
+/* ************************************************************************** */
+/*                          Private Member Functions                          */
+/* ************************************************************************** */
+
+void Harl::debug(void)
 {
 	std::cout << std::endl;
 	std::cout << "[ DEBUG ] ( ͡° ͜ʖ ͡°)" << std::endl;
@@ -40,7 +46,7 @@ void	Harl::debug( void )
 	std::cout << "I really do!" << std::endl;
 }
 
-void	Harl::info( void )
+void Harl::info(void)
 {
 	std::cout << std::endl;
 	std::cout << "[ INFO ] (ಠ_ಠ)" << std::endl;
@@ -49,7 +55,7 @@ void	Harl::info( void )
 	std::cout << "If you did, I wouldn't be asking for more!" << std::endl;
 }
 
-void	Harl::warning( void )
+void Harl::warning(void)
 {
 	std::cout << std::endl;
 	std::cout << "[ WARNING ] ⌐(ಠ۾ಠ)¬" << std::endl;
@@ -57,7 +63,7 @@ void	Harl::warning( void )
 	std::cout << "I've been coming for years whereas you started working here since last month." << std::endl;
 }
 
-void	Harl::error( void )
+void Harl::error(void)
 {
 	std::cout << std::endl;
 	std::cout << "[ ERROR ] (╯°□°）╯︵ ┻━┻" << std::endl;
@@ -65,12 +71,15 @@ void	Harl::error( void )
 	std::cout << "I want to speak to the manager now." << std::endl;
 }
 
-/*	PUBLIC MEMBER FUNCTIONS	*/
-void	Harl::complain( std::string level )
+/* ************************************************************************** */
+/*                          Public Member Functions                           */
+/* ************************************************************************** */
+
+void Harl::complain(std::string level)
 {
-	std::string	complaints[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
-	void		(Harl::*func_ptr[4])(void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
-	int			index = -1;
+	std::string complaints[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	void (Harl::*func_ptr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	int index = -1;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -97,3 +106,7 @@ void	Harl::complain( std::string level )
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 	}
 }
+
+/* ************************************************************************** */
+/*                                  Harl Class                                */
+/* ************************************************************************** */
