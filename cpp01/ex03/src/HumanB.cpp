@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 01:18:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:52:58 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:00:17 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void HumanB::attack(void) const
 /*                                   Accessor                                 */
 /* ************************************************************************** */
 
-void HumanB::setWeapon(Weapon &weapon)
+void HumanB::setWeapon(Weapon& weapon)
 {
 	this->_weapon = &weapon;
 }

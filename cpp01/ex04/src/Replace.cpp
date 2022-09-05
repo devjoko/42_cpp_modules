@@ -6,56 +6,62 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 15:41:28 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/25 16:46:53 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:07:36 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
-#include <fstream>
 #include "../inc/Replace.hpp"
 
-/*	CONSTRUCTOR	*/
-Replace::Replace(std::string &infile, std::string &outfile, std::string &s1, std::string &s2) : infile_(infile), outfile_(outfile), s1_(s1), s2_(s2)
+/* ************************************************************************** */
+/*                                Replace Class                               */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                 Class Form                                 */
+/* ************************************************************************** */
+
+Replace::Replace(std::string& infile, std::string& outfile, std::string& s1, std::string& s2)
+: _infile(infile), _outfile(outfile), _s1(s1), _s2(s2)
 {
-	return ;
+	std::cout << "Constructor <<Replace Object>>" << std::endl;
 }
 
-/*	DECONSTRUCTOR	*/
 Replace::~Replace()
 {
-	return ;
+	std::cout << "Destructor <<Replace Object>>" << std::endl;
 }
 
-/*	METHODS	*/
+/* ************************************************************************** */
+/*                          Private Member Functions                          */
+/* ************************************************************************** */
 
-void	Replace::parseLine_(std::string &line)
+void Replace::_parseLine(std::string& line)
 {
-	std::size_t	pos = -1;
+	std::size_t pos = -1;
 
-	while ((pos = line.find(s1_, pos + 1)) != std::string::npos)
+	while ((pos = line.find(_s1, pos + 1)) != std::string::npos)
 	{
-		line.erase(pos, s1_.length());
-		line.insert(pos, s2_);
+		line.erase(pos, _s1.length());
+		line.insert(pos, _s2);
 	}
 }
 
-int	Replace::closeStreams_(std::ifstream &ifStream, std::ofstream &ofStream)
+int Replace::_closeStreams(std::ifstream& ifStream, std::ofstream& ofStream)
 {
 	ifStream.close();
 	ofStream.close();
 	return (0);
 }
 
-int	Replace::openStreams_(std::ifstream &ifStream, std::ofstream &ofStream)
+int Replace::_openStreams(std::ifstream& ifStream, std::ofstream& ofStream)
 {
-	ifStream.open(this->infile_, std::ifstream::in);
+	ifStream.open(this->_infile, std::ifstream::in);
 	if (!ifStream)
 	{
 		std::cout << "Failed to open infile." << std::endl;
 		return (1);
 	}
-	ofStream.open(this->outfile_, std::ofstream::out);
+	ofStream.open(this->_outfile, std::ofstream::out);
 	if (!ofStream)
 	{
 		std::cout << "Failed to open outfile." << std::endl;
@@ -64,29 +70,37 @@ int	Replace::openStreams_(std::ifstream &ifStream, std::ofstream &ofStream)
 	return (0);
 }
 
+/* ************************************************************************** */
+/*                          Public Member Functions                           */
+/* ************************************************************************** */
+
 int	Replace::parseFile()
 {
-	std::ifstream	infileStream;
-	std::ofstream	outfileStream;
-	std::string		line;
+	std::ifstream infileStream;
+	std::ofstream outfileStream;
+	std::string line;
 
-	if (this->openStreams_(infileStream, outfileStream) != 0)
+	if (this->_openStreams(infileStream, outfileStream) != 0)
 		return (-1);
 
 	std::cout << std::endl << "SETTINGS:" << std::endl;
-	std::cout << std::setw(10) << "infile: " << this->infile_ << std::endl;
-	std::cout << std::setw(10) << "outfile: " << this->outfile_ << std::endl;
-	std::cout << std::setw(10) << "s1: " << this->s1_ << std::endl;
-	std::cout << std::setw(10) << "s2: " << this->s2_ << std::endl << std::endl;
+	std::cout << std::setw(10) << "infile: " << this->_infile << std::endl;
+	std::cout << std::setw(10) << "outfile: " << this->_outfile << std::endl;
+	std::cout << std::setw(10) << "s1: " << this->_s1 << std::endl;
+	std::cout << std::setw(10) << "s2: " << this->_s2 << std::endl << std::endl;
 
-	std::cout << "Replacing \"" << this->s1_ << "\" with \"" << this->s2_ << "\" ..." << std::endl << std::endl;
+	std::cout << "Replacing \"" << this->_s1 << "\" with \"" << this->_s2 << "\" ..." << std::endl << std::endl;
 	while (!infileStream.eof())
 	{
 		getline(infileStream, line);
-		this->parseLine_(line);
+		this->_parseLine(line);
 		outfileStream << line;
 		if (!infileStream.eof())
 			outfileStream << std::endl;
 	}
 	return (0);
 }
+
+/* ************************************************************************** */
+/*                                Replace Class                               */
+/* ************************************************************************** */

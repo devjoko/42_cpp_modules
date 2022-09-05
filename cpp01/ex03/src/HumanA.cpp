@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 01:18:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:52:48 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:00:10 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 /*                                 Class Form                                 */
 /* ************************************************************************** */
 
-HumanA::HumanA(std::string name, Weapon &weapon)
+HumanA::HumanA(std::string name, Weapon& weapon)
 : _name(name), _weapon(weapon)
 {
 	std::cout << "Constructor HumanA" << std::endl;
