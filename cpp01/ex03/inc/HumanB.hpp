@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 23:57:55 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:35:27 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:53:20 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ public:
 	~HumanB();
 
 	void attack(void) const;
+
 	void setWeapon(Weapon &weapon);
 };
 
