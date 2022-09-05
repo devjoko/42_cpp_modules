@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:44:26 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:07:35 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:10:26 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Zombie
 private:
 	std::string _name;
 public:
-	Zombie(void);
-	~Zombie(void);
+	Zombie();
+	~Zombie();
 
 	void announce(void);
 

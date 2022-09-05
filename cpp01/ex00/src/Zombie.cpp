@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:51:32 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:06:00 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:10:22 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-Zombie::Zombie(void)
+Zombie::Zombie()
 {
 	std::cout << "A new zombie arrived into this world!" << std::endl;
 	this->_name = "";
 	return ;
 }
 
-Zombie::~Zombie(void)
+Zombie::~Zombie()
 {
 	std::cout << "R.I.P. : " << this->getName() << " has been killed.. Graargh!!" << std::endl;
 	return ;
