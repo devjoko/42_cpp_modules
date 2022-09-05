@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 17:00:14 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 22:18:30 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:39:08 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void Harl::error(void)
 /*                          Public Member Functions                           */
 /* ************************************************************************** */
 
-void	Harl::complain(std::string level)
+void Harl::complain(std::string level)
 {
 	std::string complaints[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*func_ptr[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};

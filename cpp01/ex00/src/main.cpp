@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:43:41 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:18:43 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:33:32 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int main(void)
 	std::cout << "Kill 'em with fire!" << std::endl;
 	delete erika;
 	delete dieter;
+
 	return (0);
 }

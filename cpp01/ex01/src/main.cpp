@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 19:24:04 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:21:49 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:34:57 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int main(void)
 
 	std::cout << "Awwwrrr, there are too many.. Kill 'em with fire!" << std::endl;
 	delete[] horde;
+
 	return (0);
 }

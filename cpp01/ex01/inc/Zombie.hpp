@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 19:24:28 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:23:37 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 22:34:39 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ public:
 	std::string getName(void) const;
 };
 
-Zombie* zombieHorde( int N, std::string name);
+Zombie* zombieHorde(int N, std::string name);
 
 #endif /* ZOMBIE_H */
