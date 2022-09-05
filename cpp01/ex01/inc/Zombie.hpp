@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 19:24:28 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/21 23:24:15 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:23:37 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 #ifndef ZOMBIE_H
 # define ZOMBIE_H
 
+# include <iostream>
 # include <string>
 
 /* ************************************************************************** */
 /*                                Zombie Class                                */
 /* ************************************************************************** */
 
-class	Zombie
+class Zombie
 {
 private:
-	std::string	name;
+	std::string _name;
 public:
-	Zombie( void );
-	~Zombie( void );
+	Zombie();
+	~Zombie();
 
-	void		announce( void );
-	void		setName( std::string name );
-	std::string	getName( void ) const;
+	void announce(void);
+
+	void setName(std::string name);
+	std::string getName(void) const;
 };
 
-Zombie*	zombieHorde( int N, std::string name);
+Zombie* zombieHorde( int N, std::string name);
 
 #endif /* ZOMBIE_H */

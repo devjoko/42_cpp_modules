@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:51:32 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:15:05 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:18:26 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,18 @@ Zombie::Zombie()
 {
 	std::cout << "A new zombie arrived into this world!" << std::endl;
 	this->_name = "";
-	return ;
 }
 
 Zombie::~Zombie()
 {
-	std::cout << "R.I.P. : " << this->getName() << " has been killed.. Graargh!!" << std::endl;
-	return ;
+	std::cout << "R.I.P. : " << this->_name << " has been killed.. Graargh!!" << std::endl;
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void	Zombie::announce(void)
+void Zombie::announce(void)
 {
 	std::cout << this->_name << ": ";
 	std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
@@ -47,12 +45,12 @@ void	Zombie::announce(void)
 /*                                   Accessor                                 */
 /* ************************************************************************** */
 
-void	Zombie::setName(std::string name)
+void Zombie::setName(std::string name)
 {
 	this->_name = name;
 }
 
-std::string	Zombie::getName(void) const
+std::string Zombie::getName(void) const
 {
 	return (this->_name);
 }

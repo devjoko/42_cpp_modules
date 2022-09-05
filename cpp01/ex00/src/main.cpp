@@ -6,13 +6,13 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:43:41 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/05 21:06:27 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:18:43 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Zombie.hpp"
 
-int	main(void)
+int main(void)
 {
 	Zombie *erika;
 	Zombie *dieter;

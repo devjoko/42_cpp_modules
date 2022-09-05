@@ -6,22 +6,19 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 19:24:04 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:56:22 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:21:49 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/Zombie.hpp"
 
-int	main(void)
+int main(void)
 {
-	int		size;
-	Zombie	*horde;
+	int size;
+	Zombie *horde;
 
 	size = 7;
 	horde = zombieHorde(size, "[¬º-°]¬");
-	if (horde == nullptr)
-		return (-1);
 	std::cout << std::endl;
 
 	for (int i = 0; i < size; i++)

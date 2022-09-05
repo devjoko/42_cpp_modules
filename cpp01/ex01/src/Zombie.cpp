@@ -6,43 +6,55 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 19:26:34 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/21 19:26:48 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:19:56 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/Zombie.hpp"
 
-/*	CONSTRUCTOR	*/
-Zombie::Zombie( void )
+/* ************************************************************************** */
+/*                                Zombie Class                                */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                 Class Form                                 */
+/* ************************************************************************** */
+
+Zombie::Zombie()
 {
 	std::cout << "A new zombie arrived into this world!" << std::endl;
-	this->name = "";
-	return ;
+	this->_name = "";
 }
 
-/*	DECONSTRUCTOR	*/
-Zombie::~Zombie( void )
+Zombie::~Zombie()
 {
-	std::cout << "R.I.P. : " << this->getName() << " has been killed.. Graargh!!" << std::endl;
-	return ;
+	std::cout << "R.I.P. : " << this->_name << " has been killed.. Graargh!!" << std::endl;
 }
 
-/*	METHODS	*/
-void	Zombie::announce( void )
+/* ************************************************************************** */
+/*                                Member Functions                            */
+/* ************************************************************************** */
+
+void Zombie::announce(void)
 {
-	std::cout << this->getName() << ": ";
+	std::cout << this->_name << ": ";
 	std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-/*	SETTER	*/
-void	Zombie::setName( std::string name )
+/* ************************************************************************** */
+/*                                   Accessor                                 */
+/* ************************************************************************** */
+
+void Zombie::setName(std::string name)
 {
-	this->name = name;
+	this->_name = name;
 }
 
-/*	GETTER	*/
-std::string	Zombie::getName( void ) const
+std::string Zombie::getName(void) const
 {
-	return (this->name);
+	return (this->_name);
 }
+
+/* ************************************************************************** */
+/*                                Zombie Class                                */
+/* ************************************************************************** */
