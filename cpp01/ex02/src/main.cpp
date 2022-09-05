@@ -6,18 +6,18 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 20:05:20 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/22 15:21:42 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/05 21:26:10 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 
-int	main(void)
+int main(void)
 {
-	std::string	brain = "HI THIS IS BRAIN";
-	std::string	*stringPTR = &brain;
-	std::string	&stringREF = brain;
+	std::string brain = "HI THIS IS BRAIN";
+	std::string *stringPTR = &brain;
+	std::string &stringREF = brain;
 
 	std::cout << "Memory Address:" << std::endl;
 	std::cout << "STR: " << &brain << std::endl;
