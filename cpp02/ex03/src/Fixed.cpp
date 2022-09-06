@@ -6,204 +6,221 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 20:40:11 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/26 20:43:44 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/06 19:29:25 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cmath>
 #include "../inc/Fixed.hpp"
-
-/* ************************************************************************** */
-/*                              Static Declarations                           */
-/* ************************************************************************** */
-
-int const	Fixed::fractionalBits_ = 8;
 
 /* ************************************************************************** */
 /*                                 Fixed Class                                */
 /* ************************************************************************** */
 
-/*	DEFAULT CONSTRUCTOR	*/
-Fixed::Fixed() : fixedPointNumber_( 0 )
+/* ************************************************************************** */
+/*                              Static Declarations                           */
+/* ************************************************************************** */
+
+const int Fixed::_fractionalBits = 8;
+
+/* ************************************************************************** */
+/*                        Orthodox Canonical Class Form                       */
+/* ************************************************************************** */
+
+Fixed::Fixed()
+: _fixedPointNumber(0) {}
+
+Fixed::Fixed(const int i)
 {
-	return ;
+	this->_fixedPointNumber = i << this->_fractionalBits;
 }
 
-/*	PARAMETRIC CONSTRUCTOR (INTEGER)	*/
-Fixed::Fixed( int const i )
+Fixed::Fixed(const float f)
 {
-	this->fixedPointNumber_ = i << this->fractionalBits_;
-	return ;
+	this->_fixedPointNumber = roundf(f * (1 << this->_fractionalBits));
 }
 
-/*	PARAMETRIC CONSTRUCTOR (FLOATING-POINT)	*/
-Fixed::Fixed( float const f )
+Fixed::Fixed(const Fixed& rhs)
 {
-	this->fixedPointNumber_ = roundf( f * ( 1 << this->fractionalBits_ ) );
-	return ;
+	*this = rhs;
 }
 
-/*	COPY CONSTRUCTOR	*/
-Fixed::Fixed( Fixed const &src )
+Fixed::~Fixed() {}
+
+Fixed& Fixed::operator=(const Fixed& rhs)
 {
-	*this = src;
-	return ;
+	if (this != &rhs)
+		this->_fixedPointNumber = rhs.getRawBits();
+	return (*this);
 }
 
-/*	DESTRUCTOR	*/
-Fixed::~Fixed()
+/* ************************************************************************** */
+/*                            Overloaded Operators                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                            COMPARISON OPERATORS                            */
+/* ************************************************************************** */
+
+bool Fixed::operator>(const Fixed& rhs) const
 {
-	return ;
+	return (this->_fixedPointNumber > rhs.getRawBits());
 }
 
-/*	COPY ASSIGNMENT OPERATOR	*/
-Fixed&	Fixed::operator=( Fixed const &src )
+bool Fixed::operator<(const Fixed& rhs) const
 {
-	if ( this != &src )
-		this->fixedPointNumber_ = src.getRawBits();
-	return ( *this );
+	return (this->_fixedPointNumber < rhs.getRawBits());
 }
 
-/*	COMPARISON OPERATORS	*/
-bool	Fixed::operator>( Fixed const &other ) const
+bool Fixed::operator>=(const Fixed& rhs) const
 {
-	return ( this->fixedPointNumber_ > other.getRawBits() );
+	return (this->_fixedPointNumber >= rhs.getRawBits());
 }
 
-bool	Fixed::operator<( Fixed const &other ) const
+bool Fixed::operator<=(const Fixed& rhs) const
 {
-	return ( this->fixedPointNumber_ < other.getRawBits() );
+	return (this->_fixedPointNumber <= rhs.getRawBits());
 }
 
-bool	Fixed::operator>=( Fixed const &other ) const
+bool Fixed::operator==(const Fixed& rhs) const
 {
-	return ( this->fixedPointNumber_ >= other.getRawBits() );
+	return (this->_fixedPointNumber == rhs.getRawBits());
 }
 
-bool	Fixed::operator<=( Fixed const &other ) const
+bool Fixed::operator!=(const Fixed& rhs) const
 {
-	return ( this->fixedPointNumber_ <= other.getRawBits() );
+	return (this->_fixedPointNumber != rhs.getRawBits());
 }
 
-bool	Fixed::operator==( Fixed const &other ) const
+/* ************************************************************************** */
+/*                             ARITHMETIC OPERATORS                           */
+/* ************************************************************************** */
+
+Fixed Fixed::operator+(const Fixed& rhs) const
 {
-	return ( this->fixedPointNumber_ == other.getRawBits() );
+	return (Fixed(this->toFloat() + rhs.toFloat()));
 }
 
-bool	Fixed::operator!=( Fixed const &other ) const
+Fixed Fixed::operator-(const Fixed& rhs) const
 {
-	return ( this->fixedPointNumber_ != other.getRawBits() );
+	return (Fixed(this->toFloat() - rhs.toFloat()));
 }
 
-/*	ARITHMETIC OPERATORS	*/
-Fixed	Fixed::operator+( Fixed const &other ) const
+Fixed Fixed::operator*(const Fixed& rhs) const
 {
-	return ( Fixed( this->toFloat() + other.toFloat() ) );
+	return (Fixed(this->toFloat() * rhs.toFloat()));
 }
 
-Fixed	Fixed::operator-( Fixed const &other) const
+Fixed Fixed::operator/(const Fixed& rhs) const
 {
-	return ( Fixed( this->toFloat() - other.toFloat() ) );
+	return (Fixed(this->toFloat() / rhs.toFloat()));
 }
 
-Fixed	Fixed::operator*( Fixed const &other ) const
+/* ************************************************************************** */
+/*                  INCREMENT AND DECREMENT OPERATORS [PREFIX]                */
+/* ************************************************************************** */
+
+Fixed Fixed::operator++(void)
 {
-	return ( Fixed( this->toFloat() * other.toFloat() ) );
+	this->_fixedPointNumber++;
+	return (*this);
 }
 
-Fixed	Fixed::operator/( Fixed const &other ) const
+Fixed Fixed::operator--(void)
 {
-	return ( Fixed( this->toFloat() / other.toFloat() ) );
+	this->_fixedPointNumber--;
+	return (*this);
 }
 
-/*	INCREMENT AND DECREMENT OPERATORS [PREFIX]	*/
-Fixed	Fixed::operator++( void )
+/* ************************************************************************** */
+/*                 INCREMENT AND DECREMENT OPERATORS [POSTFIX]                */
+/* ************************************************************************** */
+
+Fixed Fixed::operator++(int)
 {
-	this->fixedPointNumber_++;
-	return ( *this );
+	Fixed tmp(*this);
+
+	this->_fixedPointNumber++;
+	return (tmp);
 }
 
-Fixed	Fixed::operator--( void )
+Fixed Fixed::operator--(int)
 {
-	this->fixedPointNumber_--;
-	return ( *this );
+	Fixed tmp(*this);
+
+	this->_fixedPointNumber--;
+	return (tmp);
 }
 
-/*	INCREMENT AND DECREMENT OPERATORS [POSTFIX]	*/
-Fixed	Fixed::operator++( int )
-{
-	Fixed	tmp( *this );
+/* ************************************************************************** */
+/*                                Member Functions                            */
+/* ************************************************************************** */
 
-	this->fixedPointNumber_++;
-	return ( tmp );
+float Fixed::toFloat(void) const
+{
+	return ((float)this->_fixedPointNumber / (float)(1 << this->_fractionalBits));
 }
 
-Fixed	Fixed::operator--( int )
+int Fixed::toInt(void) const
 {
-	Fixed	tmp( *this );
-
-	this->fixedPointNumber_--;
-	return ( tmp );
+	return (this->_fixedPointNumber >> this->_fractionalBits);
 }
 
-/*	PUBLIC MEMBER FUNCTIONS	*/
-float	Fixed::toFloat( void ) const
+/* ************************************************************************** */
+/*                                   Accessor                                 */
+/* ************************************************************************** */
+
+int Fixed::getRawBits(void) const
 {
-	return ( (float)this->fixedPointNumber_ / (float)( 1 << this->fractionalBits_) );
+	return (this->_fixedPointNumber);
 }
 
-int	Fixed::toInt( void ) const
+void Fixed::setRawBits(int const raw)
 {
-	return ( this->fixedPointNumber_ >> this->fractionalBits_ );
+	this->_fixedPointNumber = raw;
 }
 
-/*	GETTER	*/
-int	Fixed::getRawBits( void ) const
+/* ************************************************************************** */
+/*                           Static Member Functions                          */
+/* ************************************************************************** */
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
 {
-	return ( this->fixedPointNumber_ );
+	if (a.toFloat() < b.toFloat())
+		return (a);
+	return (b);
 }
 
-/*	SETTER	*/
-void	Fixed::setRawBits( int const raw )
+Fixed& Fixed::max(Fixed& a, Fixed& b)
 {
-	this->fixedPointNumber_ = raw;
+	if (a.toFloat() > b.toFloat())
+		return (a);
+	return (b);
 }
 
-/*	STATIC PUBLIC MEMBER FUNCTIONS	*/
-Fixed	&Fixed::min( Fixed &a, Fixed &b )
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
 {
-	if ( a.toFloat() < b.toFloat() )
-		return ( a );
-	return ( b );
+	if (a.toFloat() < b.toFloat())
+		return (a);
+	return (b);
 }
 
-Fixed	&Fixed::max( Fixed &a, Fixed &b )
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
 {
-	if ( a.toFloat() > b.toFloat() )
-		return ( a );
-	return ( b );
-}
-
-const Fixed	&Fixed::min( Fixed const &a, Fixed const &b )
-{
-	if ( a.toFloat() < b.toFloat() )
-		return ( a );
-	return ( b );
-}
-
-const Fixed	&Fixed::max( Fixed const &a, Fixed const &b )
-{
-	if ( a.toFloat() > b.toFloat() )
-		return ( a );
-	return ( b );
+	if (a.toFloat() > b.toFloat())
+		return (a);
+	return (b);
 }
 
 /* ************************************************************************** */
 /*                               Non-Member Functions                         */
 /* ************************************************************************** */
 
-std::ostream	&operator<<( std::ostream &o, Fixed const &src )
+std::ostream& operator<<(std::ostream &out, const Fixed& obj)
 {
-	o << src.toFloat();
-	return ( o );
+	out << obj.toFloat();
+	return (out);
 }
+
+/* ************************************************************************** */
+/*                                 Fixed Class                                */
+/* ************************************************************************** */
