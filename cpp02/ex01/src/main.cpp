@@ -6,19 +6,18 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 20:43:49 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/25 22:54:13 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/06 18:51:09 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "../inc/Fixed.hpp"
 
 int	main(void)
 {
-	Fixed		a;
-	Fixed const	b( 10 );
-	Fixed const	c( 42.42f );
-	Fixed const	d( b );
+	Fixed a;
+	Fixed const b(10);
+	Fixed const c(42.42f);
+	Fixed const d(b);
 
 	a = Fixed( 1234.4321f );
 
