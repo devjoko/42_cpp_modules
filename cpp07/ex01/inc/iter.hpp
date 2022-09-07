@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 01:47:46 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/07 19:37:34 by jpfuhl           ###   ########.fr       */
+/*   Created: 2022/09/07 13:37:27 by jpfuhl            #+#    #+#             */
+/*   Updated: 2022/09/07 19:26:51 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef WHATEVER_H
-# define WHATEVER_H
+#ifndef ITER_H
+# define ITER_H
 
 # include <iostream>
 
 template<typename T>
-void swap(T& a, T& b)
+void print(T& var)
 {
-	T tmp = a;
-	a = b;
-	b = tmp;
-}
-// ref as well?
-template<typename T>
-T min(T a, T b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-// ref as well?
-template<typename T>
-T max(T a, T b)
-{
-	if (a > b)
-		return (a);
-	return (b);
+	std::cout << var << std::endl;
 }
 
-#endif /* WHATEVER_H */
+template<typename T>
+void iter(T* array, size_t size, void print(T&))
+{
+	for (size_t i = 0; i < size; i++)
+		print(array[i]);
+}
+
+#endif /* ITER_H */
