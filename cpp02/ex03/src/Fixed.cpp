@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 20:40:11 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/06 19:29:25 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/08 23:16:39 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Fixed::Fixed(const int i)
 
 Fixed::Fixed(const float f)
 {
-	this->_fixedPointNumber = roundf(f * (1 << this->_fractionalBits));
+	this->_fixedPointNumber = static_cast<int>(roundf(f * (1 << this->_fractionalBits)));
 }
 
 Fixed::Fixed(const Fixed& rhs)
@@ -157,7 +157,7 @@ Fixed Fixed::operator--(int)
 
 float Fixed::toFloat(void) const
 {
-	return ((float)this->_fixedPointNumber / (float)(1 << this->_fractionalBits));
+	return (static_cast<float>(this->_fixedPointNumber) / static_cast<float>(1 << this->_fractionalBits));
 }
 
 int Fixed::toInt(void) const

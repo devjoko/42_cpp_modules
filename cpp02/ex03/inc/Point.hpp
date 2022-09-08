@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:27:58 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/06 20:06:43 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/08 23:18:56 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class Point
 private:
 	const Fixed _x;
 	const Fixed _y;
+
 public:
 	Point();
 	Point(const float x, const float y);

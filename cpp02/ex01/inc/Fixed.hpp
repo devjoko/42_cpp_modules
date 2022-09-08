@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 16:55:24 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/06 18:45:48 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/08 23:00:25 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ public:
 	void setRawBits(int const raw);
 };
 
-std::ostream& operator<<(std::ostream& o, const Fixed& obj);
+std::ostream& operator<<(std::ostream& out, const Fixed& obj);
 
 #endif /* FIXED_H */
