@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 20:22:25 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/08 22:09:25 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/09 18:44:25 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int Span::shortestSpan(void)
 		if (this->_size == 0 || this->_count == 0)
 			throw (std::range_error("error: stack is empty"));
 		else if (this->_count == 1)
-			diff = 0;
+			diff = 0; // 1 auch nicht
 		else if (this->_count >= 2)
 		{
 			std::sort(this->_stack.begin(), this->_stack.end());
@@ -101,6 +101,9 @@ int Span::shortestSpan(void)
 
 	return (diff);
 }
+
+// tmp vector stack sortieren
+
 
 int Span::longestSpan(void)
 {
