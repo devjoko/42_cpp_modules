@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:24:14 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 18:25:20 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:50:02 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,24 @@
 /*                                 ScavTrap Class                             */
 /* ************************************************************************** */
 
-class	ScavTrap : virtual public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 protected:
-	const unsigned int	_scavHp;
-	const unsigned int	_scavEn;
-	const unsigned int	_scavDmg;
+	const unsigned int _scavHp;
+	const unsigned int _scavEn;
+	const unsigned int _scavDmg;
 public:
 	ScavTrap();
 	ScavTrap(std::string name);
-	ScavTrap(const ScavTrap &copy);
-	ScavTrap	&operator=(const ScavTrap &assign);
+	ScavTrap(const ScavTrap& rhs);
 	~ScavTrap();
 
-	void	attack(const std::string &target);
-	void	guardGate(void);
+	ScavTrap& operator=(const ScavTrap& rhs);
+
+	void attack(const std::string& target);
+	void guardGate(void);
 };
 
-std::ostream	&operator<<(std::ostream &o, const ScavTrap &obj);
+std::ostream& operator<<(std::ostream& out, const ScavTrap& obj);
 
 #endif /* SCAVTRAP_H */

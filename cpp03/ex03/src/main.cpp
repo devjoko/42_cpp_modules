@@ -6,15 +6,15 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:03:26 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 21:23:40 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 17:11:34 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Demo.hpp"
 
-int	main(void)
+int main(void)
 {
-	Demo	demo;
+	Demo demo;
 
 	demo.runDemo();
 	return (0);

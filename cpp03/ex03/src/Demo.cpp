@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 20:18:04 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 21:24:22 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 17:16:59 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,34 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-Demo::Demo() : _demoRunning(false)
+Demo::Demo()
+: _demoRunning(false)
+{}
+
+Demo::Demo(const Demo& rhs)
 {
-	return ;
+	*this = rhs;
 }
 
-Demo::Demo(const Demo &copy)
-{
-	*this = copy;
-}
+Demo::~Demo() {}
 
-Demo	&Demo::operator=(const Demo &assign)
+Demo& Demo::operator=(const Demo& rhs)
 {
-	if (this != &assign)
+	if (this != &rhs)
 	{
-		this->_demoRunning = assign.getStatus();
+		this->_demoRunning = rhs._demoRunning;
 	}
 	return (*this);
-}
-
-Demo::~Demo()
-{
-	return ;
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void	Demo::runDemo(void)
+void Demo::runDemo(void)
 {
-	std::string	input;
-	int			index;
+	std::string input;
+	int index;
 
 	index = -1;
 	this->_demoRunning = true;
@@ -65,7 +61,7 @@ void	Demo::runDemo(void)
 	}
 }
 
-bool	Demo::_checkInput(std::string input, int &index)
+bool Demo::_checkInput(std::string input, int& index)
 {
 	try
 	{
@@ -80,7 +76,7 @@ bool	Demo::_checkInput(std::string input, int &index)
 	return (true);
 }
 
-void	Demo::_chooseExample(int index)
+void Demo::_chooseExample(int index)
 {
 	switch (index)
 	{
@@ -110,7 +106,7 @@ void	Demo::_chooseExample(int index)
 	}
 }
 
-void	Demo::_printInfo(void)
+void Demo::_printInfo(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                             <DiamondTrap> Demo                             */" << std::endl;
@@ -125,14 +121,14 @@ void	Demo::_printInfo(void)
 	std::cout << "/* ************************************************************************** */" << std::endl;
 }
 
-void	Demo::_showHybridInheritance(void)
+void Demo::_showHybridInheritance(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*         DiamondTrap's Hybrid Inheritance aka \"Diamond Problem\"           */" << std::endl;
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 
-	DiamondTrap	diamond("D14M0ND-TP");
+	DiamondTrap diamond("D14M0ND-TP");
 	diamond.whoAmI();
 	std::cout << diamond;
 }
@@ -144,17 +140,17 @@ void	Demo::_showConstructor(void)
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 
-	DiamondTrap	diamond("D14M0ND-TP");
+	DiamondTrap diamond("D14M0ND-TP");
 
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 
-	DiamondTrap	copy("CHEAP-COPY");
+	DiamondTrap copy("CHEAP-COPY");
 
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 
-	DiamondTrap	clone(diamond);
+	DiamondTrap clone(diamond);
 
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
@@ -169,14 +165,14 @@ void	Demo::_showConstructor(void)
 	std::cout << clone;
 }
 
-void	Demo::_showDeath(void)
+void Demo::_showDeath(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                            DiamondTrap gets one-shot                       */" << std::endl;
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 
-	DiamondTrap	diamond("D14M0ND-TP");
+	DiamondTrap diamond("D14M0ND-TP");
 
 	std::cout << diamond;
 	diamond.takeDamage(4294967290);
@@ -184,14 +180,14 @@ void	Demo::_showDeath(void)
 	diamond.beRepaired(10);
 }
 
-void	Demo::_showInheritedFunctions(void)
+void Demo::_showInheritedFunctions(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*    DiamondTrap inherits functions from ClapTrap, ScavTrap and FragTrap     */" << std::endl;
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 
-	DiamondTrap	diamond("D14M0ND-TP");
+	DiamondTrap diamond("D14M0ND-TP");
 
 	diamond.whoAmI();
 	diamond.attack("Enemy");
@@ -200,14 +196,14 @@ void	Demo::_showInheritedFunctions(void)
 	diamond.highFivesGuys();
 }
 
-void	Demo::_showFight(void)
+void Demo::_showFight(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                          DiamondTrap Fight Simulation                      */" << std::endl;
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 
-	DiamondTrap	diamond("D14M0ND-TP");
+	DiamondTrap diamond("D14M0ND-TP");
 
 	std::cout << diamond;
 	diamond.attack("Enemy");
@@ -219,7 +215,7 @@ void	Demo::_showFight(void)
 	std::cout << diamond;
 }
 
-void	Demo::_exitDemo(void)
+void Demo::_exitDemo(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                                    EXIT Demo                               */" << std::endl;
@@ -232,7 +228,7 @@ void	Demo::_exitDemo(void)
 /*                                   Accessor                                 */
 /* ************************************************************************** */
 
-bool	Demo::getStatus(void) const
+bool Demo::getStatus(void) const
 {
 	return (this->_demoRunning);
 }

@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:24:14 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/29 19:18:00 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:51:10 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,24 @@
 /*                                DiamondTrap Class                           */
 /* ************************************************************************** */
 
-class	DiamondTrap : public ScavTrap, public FragTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 private:
-	std::string	_name;
+	std::string _name;
 public:
 	DiamondTrap();
 	DiamondTrap(std::string name);
-	DiamondTrap(const DiamondTrap &copy);
-	DiamondTrap	&operator=(const DiamondTrap &assign);
+	DiamondTrap(const DiamondTrap& rhs);
 	~DiamondTrap();
 
-	void	attack(const std::string &target);
-	void	whoAmI(void);
+	DiamondTrap& operator=(const DiamondTrap& rhs);
+	
+	void attack(const std::string& target);
+	void whoAmI(void);
 
 	std::string	getDiamondName(void) const;
 };
 
-std::ostream	&operator<<(std::ostream &o, const DiamondTrap &obj);
+std::ostream& operator<<(std::ostream& out, const DiamondTrap& obj);
 
 #endif /* DIAMONDTRAP_H */
