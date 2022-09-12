@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 00:46:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/12 16:55:47 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 23:40:14 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string name)
 : _name(name), _hitpoints(10), _energy(10), _damage(0), _maxHitpoints(10)
-{
-	std::cout << "ClapTrap " << name << " has been constructed." << std::endl;
-	std::cout << "\t\033[1;36md[o_0]b Aaaand OPEN!\033[0m" << std::endl;
-	std::cout << std::endl;
-}
-
-ClapTrap::ClapTrap(std::string name, unsigned int hitpoints, unsigned int energy, unsigned int damage)
-: _name(name), _hitpoints(hitpoints), _energy(energy), _damage(damage), _maxHitpoints(hitpoints)
 {
 	std::cout << "ClapTrap " << name << " has been constructed." << std::endl;
 	std::cout << "\t\033[1;36md[o_0]b Aaaand OPEN!\033[0m" << std::endl;

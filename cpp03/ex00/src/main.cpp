@@ -6,13 +6,13 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:03:26 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/12 14:58:11 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 23:34:09 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ClapTrap.hpp"
 
-int	main(void)
+int main(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                           Let's oneshot our claptrap.                      */" << std::endl;

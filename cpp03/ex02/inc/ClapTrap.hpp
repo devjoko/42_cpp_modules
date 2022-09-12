@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:27:58 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/12 16:15:22 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 23:37:50 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ public:
 
 	ClapTrap& operator=(const ClapTrap& rhs);
 
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+	void attack(const std::string& target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
 
 	std::string getName(void) const;
 	unsigned int getHitpoints(void) const;

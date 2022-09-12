@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:45:44 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/12 16:30:29 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 23:36:47 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void ScavTrap::attack(const std::string& target)
 	}
 }
 
-void	ScavTrap::guardGate(void)
+void ScavTrap::guardGate(void)
 {
 	std::cout << "ScavTrap " << this->_name << " is now in Gate keeper mode." << std::endl;
 	std::cout << "\t\033[1;33m<|ò감ó|> Halt, moon citizen!\033[0m" << std::endl;

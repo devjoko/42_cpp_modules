@@ -6,13 +6,13 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:03:26 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 19:20:52 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 23:34:35 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ScavTrap.hpp"
 
-int	main(void)
+int main(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                      Let's show inheritance from ClapTrap.                 */" << std::endl;
@@ -20,13 +20,13 @@ int	main(void)
 	std::cout << std::endl;
 	{
 		{
-			ClapTrap	clap("CL4P-TP");
+			ClapTrap clap("CL4P-TP");
 			std::cout << clap;
 		}
 		std::cout << "/* ************************************************************************** */" << std::endl;
 		std::cout << std::endl;
 		{
-			ScavTrap	scav("SC4V-TP");
+			ScavTrap scav("SC4V-TP");
 			std::cout << scav;
 		}
 	}
@@ -36,7 +36,7 @@ int	main(void)
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 	{
-		ScavTrap	scav("SC4V-TP");
+		ScavTrap scav("SC4V-TP");
 
 		std::cout << scav;
 		scav.takeDamage(4294967290);
@@ -49,7 +49,7 @@ int	main(void)
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 	{
-		ScavTrap	scav("SC4V-TP");
+		ScavTrap scav("SC4V-TP");
 
 		std::cout << scav;
 		scav.guardGate();

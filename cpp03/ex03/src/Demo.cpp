@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 20:18:04 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/12 17:16:59 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 23:38:21 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void Demo::_showHybridInheritance(void)
 	std::cout << diamond;
 }
 
-void	Demo::_showConstructor(void)
+void Demo::_showConstructor(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                      DiamondTrap Constructor Behaviour                     */" << std::endl;
