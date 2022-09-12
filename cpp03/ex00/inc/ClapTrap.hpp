@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:27:58 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 16:06:17 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 14:53:50 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,31 @@
 /*                                 ClapTrap Class                             */
 /* ************************************************************************** */
 
-class	ClapTrap
+class ClapTrap
 {
 private:
-	std::string		_name;
-	unsigned int	_hitpoints;
-	unsigned int	_energy;
-	unsigned int	_damage;
+	std::string _name;
+	unsigned int _hitpoints;
+	unsigned int _energy;
+	unsigned int _damage;
 public:
 	ClapTrap();
 	ClapTrap(std::string name);
-	ClapTrap(const ClapTrap &copy);
-	ClapTrap	&operator=(const ClapTrap &assign);
+	ClapTrap(const ClapTrap& rhs);
 	~ClapTrap();
 
-	void	attack(const std::string &target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+	ClapTrap& operator=(const ClapTrap& rhs);
 
-	std::string		getName(void) const;
-	unsigned int	getHitpoints(void) const;
-	unsigned int	getEnergy(void) const;
-	unsigned int	getDamage(void) const;
+	void attack(const std::string& target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
+
+	std::string getName(void) const;
+	unsigned int getHitpoints(void) const;
+	unsigned int getEnergy(void) const;
+	unsigned int getDamage(void) const;
 };
 
-std::ostream	&operator<<(std::ostream &o, const ClapTrap &obj);
+std::ostream& operator<<(std::ostream& out, const ClapTrap& obj);
 
 #endif /* CLAPTRAP_H */

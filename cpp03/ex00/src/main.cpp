@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:03:26 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 17:03:17 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 14:58:11 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(void)
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 	{
-		ClapTrap	claptrap("CL4P-TP");
+		ClapTrap claptrap("CL4P-TP");
 
 		std::cout << claptrap;
 		claptrap.takeDamage(4294967290);
@@ -32,7 +32,7 @@ int	main(void)
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 	{
-		ClapTrap	claptrap("CL4P-TP");
+		ClapTrap claptrap("CL4P-TP");
 
 		std::cout << claptrap;
 		for (int i = 0; i < 11; i++)
@@ -46,13 +46,15 @@ int	main(void)
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << std::endl;
 	{
-		ClapTrap	claptrap("CL4P-TP");
+		ClapTrap claptrap("CL4P-TP");
 
 		std::cout << claptrap;
 		claptrap.attack("DOOR");
 		claptrap.takeDamage(5);
+		claptrap.beRepaired(7);
+		std::cout << claptrap;
 		claptrap.beRepaired(5);
-		claptrap.beRepaired(5);
+		std::cout << claptrap;
 		claptrap.attack("DOOR");
 		claptrap.takeDamage(4);
 		claptrap.beRepaired(2);

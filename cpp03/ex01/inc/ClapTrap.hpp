@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 19:27:58 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 18:35:08 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 15:09:18 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,33 @@
 /*                                 ClapTrap Class                             */
 /* ************************************************************************** */
 
-class	ClapTrap
+class ClapTrap
 {
 protected:
-	std::string		_name;
-	unsigned int	_hitpoints;
-	unsigned int	_energy;
-	unsigned int	_damage;
-	unsigned int	_maxHitpoints;
+	std::string _name;
+	unsigned int _hitpoints;
+	unsigned int _energy;
+	unsigned int _damage;
+	unsigned int _maxHitpoints;
 public:
 	ClapTrap();
 	ClapTrap(std::string name);
-	ClapTrap(const ClapTrap &copy);
-	ClapTrap	&operator=(const ClapTrap &assign);
+	ClapTrap(const ClapTrap& rhs);
 	~ClapTrap();
 
-	void	attack(const std::string &target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+	ClapTrap& operator=(const ClapTrap& rhs);
 
-	std::string		getName(void) const;
-	unsigned int	getHitpoints(void) const;
-	unsigned int	getEnergy(void) const;
-	unsigned int	getDamage(void) const;
-	unsigned int	getMaxHitpoints(void) const;
+	void attack(const std::string& target);
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
+
+	std::string getName(void) const;
+	unsigned int getHitpoints(void) const;
+	unsigned int getEnergy(void) const;
+	unsigned int getDamage(void) const;
+	unsigned int getMaxHitpoints(void) const;
 };
 
-std::ostream	&operator<<(std::ostream &o, const ClapTrap &obj);
+std::ostream& operator<<(std::ostream& out, const ClapTrap& obj);
 
 #endif /* CLAPTRAP_H */
