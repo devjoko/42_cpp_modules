@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:11:49 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 19:13:48 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:16:06 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,19 @@
 /*                                 FragTrap Class                             */
 /* ************************************************************************** */
 
-class	FragTrap: public ClapTrap
+class FragTrap : public ClapTrap
 {
 public:
 	FragTrap();
 	FragTrap(std::string name);
-	FragTrap(const FragTrap &copy);
-	FragTrap	&operator=(const FragTrap &assign);
+	FragTrap(const FragTrap& rhs);
 	~FragTrap();
 
-	void	highFivesGuys(void);
+	FragTrap& operator=(const FragTrap& rhs);
+	
+	void highFivesGuys(void);
 };
 
-std::ostream	&operator<<(std::ostream &o, const FragTrap &obj);
+std::ostream& operator<<(std::ostream& out, const FragTrap& obj);
 
 #endif /* FRAGTRAP_H */

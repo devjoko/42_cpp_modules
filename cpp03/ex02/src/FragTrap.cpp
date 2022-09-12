@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 01:45:44 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/28 22:22:07 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:26:43 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-FragTrap::FragTrap() : ClapTrap()
+FragTrap::FragTrap()
+: ClapTrap()
 {
 	this->_hitpoints = 100;
 	this->_energy = 100;
@@ -29,10 +30,10 @@ FragTrap::FragTrap() : ClapTrap()
 	std::cout << "A default FragTrap has been constructed." << std::endl;
 	std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
 	std::cout << std::endl;
-	return ;
 }
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
+FragTrap::FragTrap(std::string name)
+: ClapTrap(name)
 {
 	this->_hitpoints = 100;
 	this->_energy = 100;
@@ -41,49 +42,46 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	std::cout << "FragTrap " << name << " has been constructed." << std::endl;
 	std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
 	std::cout << std::endl;
-	return ;
 }
 
-FragTrap::FragTrap(FragTrap const &copy)
+FragTrap::FragTrap(const FragTrap& rhs)
 {
-	std::cout << "FragTrap has been copy constructed from " << copy.getName() << "." << std::endl;
+	std::cout << "FragTrap has been copy constructed from " << rhs._name << "." << std::endl;
 	std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
 	std::cout << std::endl;
-	*this = copy;
-	return ;
-}
-
-FragTrap	&FragTrap::operator=(FragTrap const &assign)
-{
-	if (this != &assign)
-	{
-		std::cout << "FragTrap has been assigned from " << assign.getName() << "." << std::endl;
-		std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
-		std::cout << std::endl;
-		this->_name = assign.getName();
-		this->_hitpoints = assign.getHitpoints();
-		this->_energy = assign.getEnergy();
-		this->_damage = assign.getDamage();
-		this->_maxHitpoints = assign.getMaxHitpoints();
-	}
-	return (*this);
+	*this = rhs;
 }
 
 FragTrap::~FragTrap()
 {
-	std::cout << "FragTrap " << this->getName() << " has been left behind."<< std::endl;
+	std::cout << "FragTrap " << this->_name << " has been left behind."<< std::endl;
 	std::cout << "\t\033[1;35mc[x┬x]כ  Argh arghargh death gurgle gurglegurgle urgh... death.\033[0m" << std::endl;
 	std::cout << std::endl;
-	return ;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap& rhs)
+{
+	if (this != &rhs)
+	{
+		std::cout << "FragTrap has been assigned from " << rhs._name << "." << std::endl;
+		std::cout << "\t\033[1;35mc[○┬●]כ Recompiling my combat code!\033[0m" << std::endl;
+		std::cout << std::endl;
+		this->_name = rhs._name;
+		this->_hitpoints = rhs._hitpoints;
+		this->_energy = rhs._energy;
+		this->_damage = rhs._damage;
+		this->_maxHitpoints = rhs._maxHitpoints;
+	}
+	return (*this);
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void	FragTrap::highFivesGuys(void)
+void FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap " << this->getName() << " raises hand." << std::endl;
+	std::cout << "FragTrap " << this->_name << " raises hand." << std::endl;
 	std::cout << "\t\033[1;35mc[ò┬ó]כ  Gimme five!\033[0m" << std::endl;
 	std::cout << std::endl;
 }
@@ -92,15 +90,15 @@ void	FragTrap::highFivesGuys(void)
 /*                              Non-Member Functions                          */
 /* ************************************************************************** */
 
-std::ostream	&operator<<(std::ostream &o, const FragTrap &obj)
+std::ostream& operator<<(std::ostream& out, const FragTrap& obj)
 {
-	o << "FragTrap " << obj.getName() << ": Fetching parameters!";
-	o << "\tHP: " << obj.getHitpoints();
-	o << "\tEN: " << obj.getEnergy();
-	o << "\tAD: " << obj.getDamage() << std::endl;
-	o << "\t\033[1;35mc[○┬●]כ Step right up, to the Bulletnator 9000!\033[0m" << std::endl;
-	o << std::endl;
-	return (o);
+	out << "FragTrap " << obj.getName() << ": Fetching parameters!";
+	out << "\tHP: " << obj.getHitpoints();
+	out << "\tEN: " << obj.getEnergy();
+	out << "\tAD: " << obj.getDamage() << std::endl;
+	out << "\t\033[1;35mc[○┬●]כ Step right up, to the Bulletnator 9000!\033[0m" << std::endl;
+	out << std::endl;
+	return (out);
 }
 
 /* ************************************************************************** */
