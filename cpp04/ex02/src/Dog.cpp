@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/22 16:58:44 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 17:45:27 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,38 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-Dog::Dog() : AAnimal()
+Dog::Dog()
+: AAnimal()
 {
-	std::cout << "Default constructor of \"Dog\"" << std::endl;
+	std::cout << "Default constructor of Dog" << std::endl;
 	this->_type = "Dog";
 	this->_brain = new Brain();
-	return ;
 }
 
-Dog::Dog(std::string type) : AAnimal(type)
+Dog::Dog(std::string type)
+: AAnimal(type)
 {
-	std::cout << "Parametric constructor of \"Dog\"" << std::endl;
+	std::cout << "Parametric constructor of Dog" << std::endl;
 	this->_brain = new Brain();
-	return ;
 }
 
-Dog::Dog(const Dog &rhs)
+Dog::Dog(const Dog& rhs)
 {
-	std::cout << "Copy constructor of \"Dog\"" << std::endl;
+	std::cout << "Copy constructor of Dog" << std::endl;
 	this->_type = rhs._type;
 	this->_brain = new Brain();
 	*this->_brain = *rhs._brain;
-	return ;
 }
 
-Dog	&Dog::operator=(const Dog &rhs)
+Dog::~Dog()
 {
-	std::cout << "Copy assignment operator of \"Dog\"" << std::endl;
+	std::cout << "Destructor of Dog" << std::endl;
+	delete this->_brain;
+}
+
+Dog& Dog::operator=(const Dog& rhs)
+{
+	std::cout << "Copy assignment operator of Dog" << std::endl;
 	if (this != &rhs)
 	{
 		this->_type = rhs._type;
@@ -55,20 +60,13 @@ Dog	&Dog::operator=(const Dog &rhs)
 	return (*this);
 }
 
-Dog::~Dog()
-{
-	std::cout << "Destructor of \"Dog\"" << std::endl;
-	delete this->_brain;
-	return ;
-}
-
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void	Dog::makeSound(void) const
+void Dog::makeSound(void) const
 {
-	std::cout << "Dog makes \"Woooooff!!\"" << std::endl;
+	std::cout << "Dog makes Woooooff!!" << std::endl;
 }
 
 /* ************************************************************************** */

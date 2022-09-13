@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:38:11 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/04 21:05:34 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 17:33:04 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,20 @@
 /*                                    Cat Class                               */
 /* ************************************************************************** */
 
-class	Cat : public AAnimal
+class Cat : public AAnimal
 {
 private:
-	Brain	*_brain;
+	Brain* _brain;
 public:
 	Cat();
 	Cat(std::string type);
-	Cat(const Cat &rhs);
-	Cat	&operator=(const Cat &rhs);
+	Cat(const Cat& rhs);
 	~Cat();
 
-	void	makeSound(void) const;
-	void	printBrain(void);
+	Cat& operator=(const Cat& rhs);
+
+	void makeSound(void) const;
+	void printBrain(void);
 };
 
 #endif /* CAT_H */
