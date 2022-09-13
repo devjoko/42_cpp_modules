@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 19:47:32 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 20:12:28 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 19:21:21 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@
 /*                                    Brain Class                             */
 /* ************************************************************************** */
 
-class	Brain
+class Brain
 {
 private:
-	std::string	_ideas[100];
+	std::string _ideas[100];
 public:
 	Brain();
-	Brain(const Brain &copy);
-	Brain	&operator=(const Brain &assign);
+	Brain(const Brain& rhs);
 	~Brain();
 
-	void	printBrainAddress(void);
+	Brain& operator=(const Brain& rhs);
+
+	void think(int i);
 };
 
 #endif /* BRAIN_H */
