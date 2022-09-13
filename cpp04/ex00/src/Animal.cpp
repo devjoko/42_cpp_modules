@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 19:33:03 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 19:33:14 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,46 +20,44 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-Animal::Animal() : _type("")
+Animal::Animal()
+: _type("Animal")
 {
-	std::cout << "Default construtor of \"Animal\"" << std::endl;
-	return ;
+	std::cout << "Default construtor of Animal" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+Animal::Animal(std::string type)
+: _type(type)
 {
-	std::cout << "Parametric constructor of \"Animal\"" << std::endl;
-	return ;
+	std::cout << "Parametric constructor of Animal" << std::endl;
 }
 
-Animal::Animal(const Animal &copy)
+Animal::Animal(const Animal& rhs)
 {
-	std::cout << "Copy constructor of \"Animal\"" << std::endl;
-	*this = copy;
-	return ;
-}
-
-Animal	&Animal::operator=(const Animal &assign)
-{
-	std::cout << "Assignment uperator uverload of \"Animal\"" << std::endl;
-	if (this != &assign)
-	{
-		this->_type = assign.getType();
-	}
-	return (*this);
+	std::cout << "Copy constructor of Animal" << std::endl;
+	*this = rhs;
 }
 
 Animal::~Animal()
 {
-	std::cout << "Destructor of \"Animal\"" << std::endl;
-	return ;
+	std::cout << "Destructor of Animal" << std::endl;
+}
+
+Animal& Animal::operator=(const Animal& rhs)
+{
+	std::cout << "Copy assignment operator of Animal" << std::endl;
+	if (this != &rhs)
+	{
+		this->_type = rhs._type;
+	}
+	return (*this);
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void	Animal::makeSound(void) const
+void Animal::makeSound(void) const
 {
 	std::cout << "Animal makes sound!" << std::endl;
 }
@@ -68,7 +66,7 @@ void	Animal::makeSound(void) const
 /*                                   Accessor                                 */
 /* ************************************************************************** */
 
-std::string	Animal::getType(void) const
+std::string Animal::getType(void) const
 {
 	return (this->_type);
 }

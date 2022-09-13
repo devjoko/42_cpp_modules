@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 19:30:43 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 16:26:48 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,48 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-WrongCat::WrongCat() : WrongAnimal()
+WrongCat::WrongCat()
+: WrongAnimal()
 {
-	std::cout << "Default constructor of \"WrongCat\"" << std::endl;
+	std::cout << "Default constructor of WrongCat" << std::endl;
 	this->_type = "WrongCat";
-	return ;
 }
 
-WrongCat::WrongCat(std::string type) : WrongAnimal(type)
+WrongCat::WrongCat(std::string type)
+: WrongAnimal(type)
 {
-	std::cout << "Parametric constructor \"WrongCat\"" << std::endl;
+	std::cout << "Parametric constructor WrongCat" << std::endl;
 	this->_type = "WrongCat";
-	return ;
 }
 
-WrongCat::WrongCat(const WrongCat &copy)
+WrongCat::WrongCat(const WrongCat& rhs)
 {
-	std::cout << "Copy constructor of \"WrongCat\"" << std::endl;
-	*this = copy;
-	return ;
-}
-
-WrongCat	&WrongCat::operator=(const WrongCat &assign)
-{
-	std::cout << "Assignment operator overload of \"WrongCat\"" << std::endl;
-	if (this != &assign)
-	{
-		this->_type = assign.getType();
-	}
-	return (*this);
+	std::cout << "Copy constructor of WrongCat" << std::endl;
+	*this = rhs;
 }
 
 WrongCat::~WrongCat()
 {
-	std::cout << "Destructor of \"WrongCat\"" << std::endl;
-	return ;
+	std::cout << "Destructor of WrongCat" << std::endl;
+}
+
+WrongCat& WrongCat::operator=(const WrongCat& rhs)
+{
+	std::cout << "Copy assignment operator of WrongCat" << std::endl;
+	if (this != &rhs)
+	{
+		this->_type = rhs._type;
+	}
+	return (*this);
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void	WrongCat::makeSound(void) const
+void WrongCat::makeSound(void) const
 {
-	std::cout << "WrongCat makes \"Meowz!\"" << std::endl;
+	std::cout << "WrongCat makes Meowz!" << std::endl;
 }
 
 /* ************************************************************************** */

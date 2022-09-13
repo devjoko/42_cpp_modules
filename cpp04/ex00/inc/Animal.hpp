@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:38:11 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/07/30 15:23:57 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 15:47:07 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,21 @@
 /*                                  Animal Class                              */
 /* ************************************************************************** */
 
-class	Animal
+class Animal
 {
 protected:
-	std::string	_type;
+	std::string _type;
 public:
 	Animal();
 	Animal(std::string type);
-	Animal(const Animal &copy);
-	Animal	&operator=(const Animal &assign);
+	Animal(const Animal& rhs);
 	virtual ~Animal();
 
-	virtual void	makeSound(void) const;
+	Animal& operator=(const Animal& rhs);
 
-	std::string	getType(void) const;
+	virtual void makeSound(void) const;
+
+	std::string getType(void) const;
 };
 
 #endif /* ANIMAL_H */

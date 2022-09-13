@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:46:33 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 19:28:05 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 19:33:28 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,48 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-Cat::Cat() : Animal()
+Cat::Cat()
+: Animal()
 {
-	std::cout << "Default constructor of \"Cat\"" << std::endl;
+	std::cout << "Default constructor of Cat" << std::endl;
 	this->_type = "Cat";
-	return ;
 }
 
-Cat::Cat(std::string type) : Animal(type)
+Cat::Cat(std::string type)
+: Animal(type)
 {
-	std::cout << "Parametric constructor of \"Cat\"" << std::endl;
+	std::cout << "Parametric constructor of Cat" << std::endl;
 	this->_type = "Cat";
-	return ;
 }
 
-Cat::Cat(const Cat &copy)
+Cat::Cat(const Cat& rhs)
 {
-	std::cout << "Copy constructor of \"Cat\"" << std::endl;
-	*this = copy;
-	return ;
-}
-
-Cat	&Cat::operator=(const Cat &assign)
-{
-	std::cout << "Assignment operator overload of \"Cat\"" << std::endl;
-	if (this != &assign)
-	{
-		this->_type = assign.getType();
-	}
-	return (*this);
+	std::cout << "Copy constructor of Cat" << std::endl;
+	*this = rhs;
 }
 
 Cat::~Cat()
 {
-	std::cout << "Destructor of \"Cat\"" << std::endl;
-	return ;
+	std::cout << "Destructor of Cat" << std::endl;
+}
+
+Cat& Cat::operator=(const Cat& rhs)
+{
+	std::cout << "Copy assignment operator of Cat" << std::endl;
+	if (this != &rhs)
+	{
+		this->_type = rhs._type;
+	}
+	return (*this);
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void	Cat::makeSound(void) const
+void Cat::makeSound(void) const
 {
-	std::cout << "Cat makes \"Meeeooow!!\"" << std::endl;
+	std::cout << "Cat makes Meeeooow!!" << std::endl;
 }
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:43:52 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/02 19:41:53 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 16:08:02 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include "../inc/WrongAnimal.hpp"
 #include "../inc/WrongCat.hpp"
 
-int	main(void)
+int main(void)
 {
 	std::cout << "/* ************************************************************************** */" << std::endl;
 	std::cout << "/*                             WITH VIRTUAL FUNCTION                          */" << std::endl;
@@ -33,17 +33,16 @@ int	main(void)
 	std::cout << std::endl;
 	{
 		std::cout << "CALLING CONSTRUCTOR:" << std::endl;
-		const Animal*	meta = new Animal();
-		const Animal*	j = new Dog();
-		const Animal*	i = new Cat();
+		const Animal* meta = new Animal();
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
 		std::cout << std::endl;
 
 		std::cout << "TYPES:" << std::endl;
-		std::cout << "j is a \"" << j->getType() << "\"" << std::endl;
-		std::cout << "i is a \"" << i->getType() << "\"" << std::endl;
-		std::cout << "meta is a \"" << meta->getType() << "\"" << std::endl;
+		std::cout << "j is a " << j->getType() << "" << std::endl;
+		std::cout << "i is a " << i->getType() << "" << std::endl;
+		std::cout << "meta is a " << meta->getType() << "" << std::endl;
 		std::cout << std::endl;
-
 
 		std::cout << "ANIMAL SOUNDS:" << std::endl;
 		i->makeSound();
@@ -65,20 +64,19 @@ int	main(void)
 	std::cout << std::endl;
 	{
 		std::cout << "CALLING CONSTRUCTOR:" << std::endl;
-		const WrongAnimal*	meta = new WrongAnimal();
-		const WrongAnimal*	i = new WrongCat();
+		const WrongAnimal* meta = new WrongAnimal();
+		const WrongAnimal* i = new WrongCat();
 		std::cout << std::endl;
 
 		std::cout << "TYPES:" << std::endl;
-		std::cout << "meta is a \"" << meta->getType() << "\"" << std::endl;
-		std::cout << "i is a \"" << i->getType() << "\"" << std::endl;
+		std::cout << "meta is a " << meta->getType() << "" << std::endl;
+		std::cout << "i is a " << i->getType() << "" << std::endl;
 		std::cout << std::endl;
 
 		std::cout << "ANIMAL SOUNDS:" << std::endl;
 		meta->makeSound();
 		i->makeSound();
 		std::cout << std::endl;
-
 
 		std::cout << "CALLING DESTRUCTOR:" << std::endl;
 		delete meta;
