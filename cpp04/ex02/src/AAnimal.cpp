@@ -20,28 +20,32 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
-AAnimal::AAnimal() : _type("")
+AAnimal::AAnimal()
+: _type("AAnimal")
 {
-	std::cout << "Default construtor of \"AAnimal\"" << std::endl;
-	return ;
+	std::cout << "Default construtor of AAnimal" << std::endl;
 }
 
-AAnimal::AAnimal(std::string type) : _type(type)
+AAnimal::AAnimal(std::string type)
+: _type(type)
 {
-	std::cout << "Parametric constructor of \"AAnimal\"" << std::endl;
-	return ;
+	std::cout << "Parametric constructor of AAnimal" << std::endl;
 }
 
-AAnimal::AAnimal(const AAnimal &rhs)
+AAnimal::AAnimal(const AAnimal& rhs)
 {
-	std::cout << "Copy constructor of \"AAnimal\"" << std::endl;
+	std::cout << "Copy constructor of AAnimal" << std::endl;
 	*this = rhs;
-	return ;
 }
 
-AAnimal	&AAnimal::operator=(const AAnimal &rhs)
+AAnimal::~AAnimal()
 {
-	std::cout << "Copy assignment operator of \"AAnimal\"" << std::endl;
+	std::cout << "Destructor of AAnimal" << std::endl;
+}
+
+AAnimal& AAnimal::operator=(const AAnimal& rhs)
+{
+	std::cout << "Copy assignment operator of AAnimal" << std::endl;
 	if (this != &rhs)
 	{
 		this->_type = rhs.getType();
@@ -49,21 +53,11 @@ AAnimal	&AAnimal::operator=(const AAnimal &rhs)
 	return (*this);
 }
 
-AAnimal::~AAnimal()
-{
-	std::cout << "Destructor of \"AAnimal\"" << std::endl;
-	return ;
-}
-
-/* ************************************************************************** */
-/*                                Member Functions                            */
-/* ************************************************************************** */
-
 /* ************************************************************************** */
 /*                                   Accessor                                 */
 /* ************************************************************************** */
 
-std::string	AAnimal::getType(void) const
+std::string AAnimal::getType(void) const
 {
 	return (this->_type);
 }

@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:38:11 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/04 21:05:40 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/13 17:33:38 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,19 @@
 /*                                    Dog Class                               */
 /* ************************************************************************** */
 
-class	Dog : public AAnimal
+class Dog : public AAnimal
 {
 private:
-	Brain	*_brain;
+	Brain* _brain;
 public:
 	Dog();
 	Dog(std::string type);
-	Dog(const Dog &rhs);
-	Dog	&operator=(const Dog &rhs);
+	Dog(const Dog& rhs);
 	~Dog();
 
-	void	makeSound(void) const;
+	Dog& operator=(const Dog& rhs);
+
+	void makeSound(void) const;
 };
 
 #endif /* DOG_H */
