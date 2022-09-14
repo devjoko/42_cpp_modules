@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:09:29 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/31 20:35:33 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:12:24 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ private:
 	const std::string _name;
 	int _grade;
 public:
-	// Bureaucrat(); // makes no sense
+	Bureaucrat();
 	Bureaucrat(std::string name, int grade);
-	Bureaucrat(const Bureaucrat & rhs);
-	Bureaucrat & operator=(const Bureaucrat & rhs);
+	Bureaucrat(const Bureaucrat& rhs);
 	~Bureaucrat();
+
+	Bureaucrat& operator=(const Bureaucrat& rhs);
 
 	void incrementGrade(void);
 	void decrementGrade(void);
@@ -42,7 +43,7 @@ public:
 
 	class GradeTooHighException : public std::exception
 	{
-		virtual const char * what() const throw()
+		virtual const char* what() const throw()
 		{
 			return ("EXCEPTION: Grade too high!");
 		}
@@ -50,13 +51,13 @@ public:
 
 	class GradeTooLowException : public std::exception
 	{
-		virtual const char * what() const throw()
+		virtual const char* what() const throw()
 		{
 			return ("EXCEPTION: Grade too low!");
 		}
 	};
 };
 
-std::ostream & operator<<(std::ostream & stream, const Bureaucrat & rhs);
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& obj);
 
 #endif /* BUREAUCRAT_H */

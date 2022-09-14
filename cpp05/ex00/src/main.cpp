@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:37:48 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/08/31 20:58:50 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:03:40 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int main(void)
 
 	std::cout << "--- CHANGING GRADES BEYOND LIMITS ---" << std::endl;
 	{
-		// WHY CALLING DESTRUCTOR SO EARLY?
 		try
 		{
 			Bureaucrat angela("Angela", 1);
@@ -93,6 +92,5 @@ int main(void)
 		std::cout << e.what() << std::endl;
 	}
 
-	// system("leaks bureaucrat");
 	return (0);
 }
