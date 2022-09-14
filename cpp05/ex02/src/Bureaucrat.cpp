@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:20:03 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/01 17:48:41 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:52:41 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,22 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
+Bureaucrat::Bureaucrat()
+: _name("Default"), _grade(75)
+{
+	std::cout << "Default Constructor Bureaucrat" << std::endl;
+
+	if (_grade < 1)
+		throw (Bureaucrat::GradeTooHighException());
+	else if (_grade > 150)
+		throw (Bureaucrat::GradeTooLowException());
+}
+
 Bureaucrat::Bureaucrat(std::string name, int grade)
 : _name(name), _grade(grade)
 {
 	std::cout << "Constructor Bureaucrat " << name << " | grade: " << grade << std::endl;
+
 	if (grade < 1)
 		throw (Bureaucrat::GradeTooHighException());
 	else if (grade > 150)
@@ -35,11 +47,26 @@ Bureaucrat::Bureaucrat(const Bureaucrat & rhs)
 : _name(rhs._name), _grade(rhs._grade)
 {
 	std::cout << "Copy Constructor Bureaucrat" << std::endl;
+
+	if (_grade < 1)
+		throw (Bureaucrat::GradeTooHighException());
+	else if (_grade > 150)
+		throw (Bureaucrat::GradeTooLowException());
 }
 
 Bureaucrat::~Bureaucrat()
 {
 	std::cout << "Destructor Bureaucrat "<< _name << std::endl;
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
+{
+	std::cout << "Copy Assignment Operator Bureaucrat" << std::endl;
+	if (this != &rhs)
+	{
+		this->_grade = rhs._grade;
+	}
+	return (*this);
 }
 
 /* ************************************************************************** */
@@ -64,7 +91,7 @@ void Bureaucrat::decrementGrade(void)
 		_grade += 1;
 }
 
-void Bureaucrat::signForm(AForm & form)
+void Bureaucrat::signForm(AForm& form)
 {
 	try
 	{
@@ -78,7 +105,7 @@ void Bureaucrat::signForm(AForm & form)
 	}
 }
 
-void Bureaucrat::executeForm(AForm const & form)
+void Bureaucrat::executeForm(const AForm& form)
 {
 	try
 	{
@@ -109,7 +136,7 @@ int Bureaucrat::getGrade(void) const
 /*                              Non-Member Functions                          */
 /* ************************************************************************** */
 
-std::ostream & operator<<(std::ostream & out, const Bureaucrat & obj)
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& obj)
 {
 	out << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "." << std::endl;
 	return (out);

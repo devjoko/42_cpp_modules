@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:22:17 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/01 17:40:57 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 19:19:08 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,44 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
+PresidentialPardonForm::PresidentialPardonForm()
+: AForm("Presidential Pardon Form", "Default", 25, 5)
+{
+	std::cout << "Default Constructor PresidentialPardonForm" << std::endl;
+}
+
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
 : AForm("Presidential Pardon Form", target, 25, 5)
 {
-	std::cout << "Constructor PresidentialPardonForm"<< std::endl;
+	std::cout << "Constructor PresidentialPardonForm" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm & rhs)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& rhs)
 : AForm(rhs)
 {
-	std::cout << "Copy Constructor PresidentialPardonForm"<< std::endl;
+	std::cout << "Copy Constructor PresidentialPardonForm" << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << "Destructor PresidentialPardonForm"<< std::endl;
+	std::cout << "Destructor PresidentialPardonForm" << std::endl;
+}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs)
+{
+	std::cout << "Copy Assignment Operator PresidentialPardonForm" << std::endl;
+	if (this != &rhs)
+	{
+		this->_isSigned = rhs._isSigned;
+	}
+	return (*this);
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+void PresidentialPardonForm::execute(const Bureaucrat& executor) const
 {
 	if (executor.getGrade() > this->getExecGrade())
 	{

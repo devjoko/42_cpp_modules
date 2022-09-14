@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:20:03 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/14 18:25:52 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:52:03 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Bureaucrat::Bureaucrat()
 : _name("Default"), _grade(75)
 {
 	std::cout << "Default Constructor Bureaucrat" << std::endl;
+
 	if (_grade < 1)
 		throw (Bureaucrat::GradeTooHighException());
 	else if (_grade > 150)
@@ -35,6 +36,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 : _name(name), _grade(grade)
 {
 	std::cout << "Constructing Bureaucrat " << name << " with grade " << grade << "." << std::endl;
+
 	if (grade < 1)
 		throw (Bureaucrat::GradeTooHighException());
 	else if (grade > 150)
@@ -45,6 +47,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& rhs)
 : _name(rhs._name), _grade(rhs._grade)
 {
 	std::cout << "Copy Constructor Bureaucrat" << std::endl;
+
 	if (_grade < 1)
 		throw (Bureaucrat::GradeTooHighException());
 	else if (_grade > 150)

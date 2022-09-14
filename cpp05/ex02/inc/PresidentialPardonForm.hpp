@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 13:28:08 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/01 17:19:58 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 19:10:33 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 
 class PresidentialPardonForm : public AForm
 {
-private:
-	PresidentialPardonForm();
-	PresidentialPardonForm & operator=(const PresidentialPardonForm & rhs);
 public:
+	PresidentialPardonForm();
 	PresidentialPardonForm(std::string target);
-	PresidentialPardonForm(const PresidentialPardonForm & rhs);
+	PresidentialPardonForm(const PresidentialPardonForm& rhs);
 	~PresidentialPardonForm();
 
-	void execute(Bureaucrat const & executor) const;
+	PresidentialPardonForm& operator=(const PresidentialPardonForm& rhs);
+
+	void execute(const Bureaucrat& executor) const;
 };
 
 #endif /* PRESIDENTIAL_PARDON_FORM_H */

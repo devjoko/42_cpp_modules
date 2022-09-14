@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #pragma once
-#ifndef AFORM_H
-# define AFORM_H
+#ifndef A_FORM_H
+# define A_FORM_H
 
 # include <iostream>
 # include <string>
@@ -26,22 +26,22 @@ class Bureaucrat;
 
 class AForm
 {
-private:
+protected:
 	const std::string _name;
 	const std::string _target;
 	const int _signGrade;
 	const int _execGrade;
 	bool _isSigned;
-
-	AForm();
-	AForm & operator=(const AForm & rhs);
 public:
+	AForm();
 	AForm(std::string name, std::string target, int signGrade, int execGrade);
-	AForm(const AForm & rhs);
+	AForm(const AForm& rhs);
 	virtual ~AForm();
 
-	void beSigned(Bureaucrat const & bureaucrat);
-	virtual void execute(Bureaucrat const & executor) const = 0;
+	AForm& operator=(const AForm& rhs);
+
+	void beSigned(const Bureaucrat& bureaucrat);
+	virtual void execute(const Bureaucrat& executor) const = 0;
 
 	std::string getName(void) const;
 	std::string getTarget(void) const;
@@ -52,7 +52,7 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		virtual const char * what() const throw()
+		virtual const char* what() const throw()
 		{
 			return ("grade is too high!");
 		}
@@ -61,13 +61,13 @@ public:
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		virtual const char * what() const throw()
+		virtual const char* what() const throw()
 		{
 			return ("grade is too low!");
 		}
 	};
 };
 
-std::ostream & operator<<(std::ostream & out, const AForm & obj);
+std::ostream& operator<<(std::ostream& out, const AForm& obj);
 
-#endif /* AFORM_H */
+#endif /* A_FORM_H */

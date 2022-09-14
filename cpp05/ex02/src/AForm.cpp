@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:56:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/01 17:45:42 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:45:31 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
+AForm::AForm()
+: _name("Default"), _target("Default"), _signGrade(75), _execGrade(75), _isSigned(false)
+{
+	std::cout << "Default Constructor AForm" << std::endl;
+
+	if (_signGrade < 1 || _execGrade < 1)
+		throw (AForm::GradeTooHighException());
+	else if (_signGrade > 150 || _execGrade > 150)
+		throw (AForm::GradeTooLowException());
+}
+
 AForm::AForm(std::string name, std::string target, int signGrade, int execGrade)
 : _name(name), _target(target), _signGrade(signGrade), _execGrade(execGrade), _isSigned(false)
 {
@@ -32,10 +43,15 @@ AForm::AForm(std::string name, std::string target, int signGrade, int execGrade)
 		throw (AForm::GradeTooLowException());
 }
 
-AForm::AForm(const AForm & rhs)
+AForm::AForm(const AForm& rhs)
 : _name(rhs._name), _target(rhs._target), _signGrade(rhs._signGrade), _execGrade(rhs._execGrade), _isSigned(rhs._isSigned)
 {
 	std::cout << "Copy Constructor AForm" << std::endl;
+
+	if (_signGrade < 1 || _execGrade < 1)
+		throw (AForm::GradeTooHighException());
+	else if (_signGrade > 150 || _execGrade > 150)
+		throw (AForm::GradeTooLowException());
 }
 
 AForm::~AForm()
@@ -43,11 +59,21 @@ AForm::~AForm()
 	std::cout << "Destructor AForm" << std::endl;
 }
 
+AForm& AForm::operator=(const AForm& rhs)
+{
+	std::cout << "Copy Assignment Operator AForm" << std::endl;
+	if (this != &rhs)
+	{
+		this->_isSigned = rhs._isSigned;
+	}
+	return (*this);
+}
+
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void AForm::beSigned(Bureaucrat const & bureaucrat)
+void AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() > _signGrade)
 		throw (AForm::GradeTooLowException());
@@ -88,7 +114,7 @@ bool AForm::getSignStatus(void) const
 /*                              Non-Member Functions                          */
 /* ************************************************************************** */
 
-std::ostream & operator<<(std::ostream & out, const AForm & obj)
+std::ostream& operator<<(std::ostream& out, const AForm& obj)
 {
 	out << "AForm \"" << obj.getName() << "\"" << std::endl;
 	out << "Target: " << obj.getTarget() << std::endl;
