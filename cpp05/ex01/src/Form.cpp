@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:56:31 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/01 13:08:37 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:32:41 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,21 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
+Form::Form()
+: _name("Default"), _signGrade(75), _execGrade(75), _isSigned(false)
+{
+	std::cout << "Default Constructor Form" << std::endl;
+
+	if (_signGrade < 1 || _execGrade < 1)
+		throw (Form::GradeTooHighException());
+	else if (_signGrade > 150 || _execGrade > 150)
+		throw (Form::GradeTooLowException());
+}
+
 Form::Form(std::string name, int signGrade, int execGrade)
 : _name(name), _signGrade(signGrade), _execGrade(execGrade), _isSigned(false)
 {
-	std::cout << "Constructing Form \"" << name << "\" with sign grade " << signGrade << " and exec grade " << execGrade << "." << std::endl;
+	std::cout << "Constructing Form \"" << name << "\" with sign grade " << signGrade << " and exec grade " << execGrade << std::endl;
 
 	if (signGrade < 1 || execGrade < 1)
 		throw (Form::GradeTooHighException());
@@ -32,35 +43,39 @@ Form::Form(std::string name, int signGrade, int execGrade)
 		throw (Form::GradeTooLowException());
 }
 
-Form::Form(const Form & rhs)
+Form::Form(const Form& rhs)
 : _name(rhs._name), _signGrade(rhs._signGrade), _execGrade(rhs._execGrade), _isSigned(rhs._isSigned)
 {
-	std::cout << "Copy Constructing Form from ... ?" << std::endl;
+	std::cout << "Copy Constructor Form" << std::endl;
+
+	if (_signGrade < 1 || _execGrade < 1)
+		throw (Form::GradeTooHighException());
+	else if (_signGrade > 150 || _execGrade > 150)
+		throw (Form::GradeTooLowException());
 }
 
-Form & Form::operator=(const Form & rhs) // this is weird
+Form::~Form()
+{
+	std::cout << "Destructor Form " << _name << std::endl;
+}
+
+Form& Form::operator=(const Form& rhs)
 {
 	std::cout << "Copy Assignment Operator Form" << std::endl;
 	if (this != &rhs)
 	{
 		this->_isSigned = rhs._isSigned;
-		// rest not posible because constant?
 	}
 	return (*this);
-}
-
-Form::~Form()
-{
-	std::cout << "Destructor Form \"" << _name << "\"." << std::endl;
 }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
 /* ************************************************************************** */
 
-void Form::beSigned(Bureaucrat * bureaucrat)
+void Form::beSigned(const Bureaucrat& bureaucrat)
 {
-	if (bureaucrat->getGrade() > _signGrade)
+	if (bureaucrat.getGrade() > _signGrade)
 		throw (Form::GradeTooLowException());
 	else
 		_isSigned = true;
@@ -94,7 +109,7 @@ bool Form::getSignStatus(void) const
 /*                              Non-Member Functions                          */
 /* ************************************************************************** */
 
-std::ostream & operator<<(std::ostream & out, const Form & obj)
+std::ostream& operator<<(std::ostream& out, const Form& obj)
 {
 	out << "Form \"" << obj.getName() << "\"" << std::endl;
 	out << "Sign grade: " << obj.getSignGrade() << std::endl;

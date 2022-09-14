@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:56:41 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/01 13:01:13 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/14 18:24:31 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ private:
 	const int _execGrade;
 	bool _isSigned;
 public:
-	// default contructor makes no sense ?
+	Form();
 	Form(std::string name, int signGrade, int execGrade);
-	Form(const Form & rhs);
-	Form & operator=(const Form & rhs);
+	Form(const Form& rhs);
 	~Form();
 
-	void beSigned(Bureaucrat * bureaucrat); // reference ?
+	Form& operator=(const Form& rhs);
+
+	void beSigned(const Bureaucrat& bureaucrat);
 
 	std::string getName(void) const;
 	int getSignGrade(void) const;
@@ -48,7 +49,7 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		virtual const char * what() const throw()
+		virtual const char* what() const throw()
 		{
 			return ("grade is too high!");
 		}
@@ -57,13 +58,13 @@ public:
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		virtual const char * what() const throw()
+		virtual const char* what() const throw()
 		{
 			return ("grade is too low!");
 		}
 	};
 };
 
-std::ostream & operator<<(std::ostream & out, const Form & obj);
+std::ostream& operator<<(std::ostream& out, const Form& obj);
 
 #endif /* FORM_H */
