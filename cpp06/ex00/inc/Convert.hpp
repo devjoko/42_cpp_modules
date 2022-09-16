@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:27:38 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/16 02:35:43 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/16 19:53:55 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@
 class Convert
 {
 private:
-	std::string		_input;
-	int				_type;
-	bool			_pseudo;
-	int				_precision;
-	unsigned char	_c;
-	long			_i;
-	float			_f;
-	double			_d;
+	std::string	_input;
+	int			_type;
+	bool		_pseudo;
+	int			_precision;
+	char		_c;
+	int			_i;
+	float		_f;
+	double		_d;
+	long double	_ld;
+	bool		_intOverflow;
 
 	void parser(void);
 	void printResults(void) const;
@@ -43,6 +45,7 @@ private:
 	void toInt(void);
 	void toFloat(void);
 	void toDouble(void);
+	void toLongDouble(void);
 
 	Convert();
 public:

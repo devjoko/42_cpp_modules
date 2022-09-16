@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:43:07 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/16 19:37:26 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/16 20:01:52 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 
 Convert::Convert(std::string input)
 : _input(input), _type(-1), _pseudo(false), _precision(0), _c('0'), _i(0),
-_f(0.0f), _d(0.0)
+_f(0.0f), _d(0.0), _ld(0.0), _intOverflow(false)
 {}
 
 Convert::Convert(const Convert& rhs)
-: _input(rhs._input), _type(rhs._type), _pseudo(rhs._pseudo),
-_precision(rhs._precision), _c(rhs._c), _i(rhs._i), _f(rhs._f), _d(rhs._d)
+: _input(rhs._input), _type(rhs._type), _pseudo(rhs._pseudo), _precision(rhs._precision),
+_c(rhs._c), _i(rhs._i), _f(rhs._f), _d(rhs._d), _ld(rhs._ld), _intOverflow(rhs._intOverflow)
 {}
 
 Convert::~Convert()
@@ -45,6 +45,8 @@ Convert& Convert::operator=(const Convert& rhs)
 		this->_i = rhs._i;
 		this->_f = rhs._f;
 		this->_d = rhs._d;
+		this->_ld = rhs._ld;
+		this->_intOverflow = rhs._intOverflow;
 	}
 	return (*this);
 }
@@ -196,8 +198,8 @@ void Convert::parser(void)
 
 void Convert::toChar(void)
 {
-	this->_c = static_cast<unsigned char>(this->_input[0]);
-	this->_i = static_cast<long>(_c);
+	this->_c = static_cast<char>(this->_input[0]);
+	this->_i = static_cast<int>(_c);
 	this->_f = static_cast<float>(_c);
 	this->_d = static_cast<double>(_c);
 }
@@ -206,14 +208,15 @@ void Convert::toInt(void)
 {
 	try
 	{
-		this->_i = std::stol(this->_input);
+		this->_i = std::stoi(this->_input);
 	}
 	catch(...)
 	{
-		Convert::toDouble();
+		this->_intOverflow = true;
+		Convert::toFloat();
 		return ;
 	}
-	this->_c = static_cast<unsigned char>(_i);
+	this->_c = static_cast<char>(_i);
 	this->_f = static_cast<float>(_i);
 	this->_d = static_cast<double>(_i);
 	
@@ -221,18 +224,56 @@ void Convert::toInt(void)
 
 void Convert::toFloat(void)
 {
-	this->_f = std::stof(this->_input);
-	this->_c = static_cast<unsigned char>(_f);
-	this->_i = static_cast<long>(_f);
+	try
+	{
+		this->_f = std::stof(this->_input);
+	}
+	catch(...)
+	{
+		Convert::toDouble();
+		return ;
+	}
+	this->_c = static_cast<char>(_f);
+	this->_i = static_cast<int>(_f);
 	this->_d = static_cast<double>(_f);
+	if (this->_f < std::numeric_limits<int>::min() || this->_f > std::numeric_limits<int>::max())
+		this->_intOverflow = true;
 }
 
 void Convert::toDouble(void)
 {
-	this->_d = std::stod(this->_input);
-	this->_c = static_cast<unsigned char>(_d);
-	this->_i = static_cast<long>(_d);
+	try
+	{
+		this->_d = std::stod(this->_input);
+	}
+	catch(...)
+	{
+		Convert::toLongDouble();
+		return ;
+	}
+	this->_c = static_cast<char>(_d);
+	this->_i = static_cast<int>(_d);
 	this->_f = static_cast<float>(_d);
+	if (this->_d < std::numeric_limits<int>::min() || this->_d > std::numeric_limits<int>::max())
+		this->_intOverflow = true;
+}
+
+void Convert::toLongDouble(void)
+{
+	try
+	{
+		this->_ld = std::stold(this->_input);
+	}
+	catch(...)
+	{
+		throw (std::runtime_error("error : cannot convert input larger than max long double"));
+	}
+	this->_c = static_cast<char>(_ld);
+	this->_i = static_cast<int>(_ld);
+	this->_f = static_cast<float>(_ld);
+	this->_d = static_cast<double>(_ld);
+	if (this->_ld < std::numeric_limits<int>::min() || this->_ld > std::numeric_limits<int>::max())
+		this->_intOverflow = true;
 }
 
 /* ************************************************************************** */
@@ -247,7 +288,7 @@ void Convert::printResults(void) const
 	/* Print CHAR */
 	if (this->_pseudo)
 		std::cout << "char: impossible" << std::endl;
-	else if (std::isprint(this->_c) == 0)
+	else if (std::isprint(static_cast<unsigned char>(this->_c)) == 0)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: \'" << _c << "\'" << std::endl;
@@ -255,7 +296,7 @@ void Convert::printResults(void) const
 	/* Print INT */
 	if (this->_pseudo)
 		std::cout << "int: impossible" << std::endl;
-	else if (this->_i < std::numeric_limits<int>::min() || this->_i > std::numeric_limits<int>::max())
+	else if (this->_intOverflow)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << _i << std::endl;
