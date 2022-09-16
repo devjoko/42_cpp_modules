@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:43:07 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/16 03:21:14 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/16 03:25:14 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int Data::getInt(void) const
 
 std::ostream& operator<<(std::ostream& out, const Data& rhs)
 {
-	out << "Data contains " << rhs.getStr() << ", " << rhs.getChar() << " and " << rhs.getInt() << std::endl;
+	out << "Data contains \"" << rhs.getStr() << "\", \'" << rhs.getChar() << "\' and " << rhs.getInt() << std::endl;
 	return (out);
 }
 
