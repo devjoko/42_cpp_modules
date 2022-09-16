@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:43:07 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/16 02:49:26 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/16 02:56:36 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void Convert::parser(void)
 
 	/* Check pseudo literal */
 	{
-		std::string pseudo[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+		std::string pseudo[8] = {"-inff", "+inff", "inff", "nanf", "-inf", "+inf", "inf", "nan"};
 		int pseudoIndex = -1;
 
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 8; i++)
 		{
 			if (_input == pseudo[i])
 			{
@@ -82,10 +82,10 @@ void Convert::parser(void)
 		}
 		switch (pseudoIndex)
 		{
-		case 0 ... 2:
+		case 0 ... 3:
 			_type = FLOAT;
 			return ;
-		case 3: case 4: case 5:
+		case 4 ... 7:
 			_type = DOUBLE;
 			return ;
 		}
