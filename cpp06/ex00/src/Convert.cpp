@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:43:07 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/16 02:56:36 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/16 19:37:26 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,7 @@ void Convert::printResults(void) const
 	if (this->_pseudo)
 		std::cout << "int: impossible" << std::endl;
 	else if (this->_i < std::numeric_limits<int>::min() || this->_i > std::numeric_limits<int>::max())
-		std::cout << "int: Non displayable" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << _i << std::endl;
 
