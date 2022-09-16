@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:43:07 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/07 01:41:43 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/16 02:49:26 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,26 @@
 /* ************************************************************************** */
 
 Convert::Convert(std::string input)
-: _input(input), _type(-1), _c('0'), _i(0), _f(0.0f), _d(0.0)
-{
-	std::cout << "Constructor Convert Object" << std::endl;
-}
+: _input(input), _type(-1), _pseudo(false), _precision(0), _c('0'), _i(0),
+_f(0.0f), _d(0.0)
+{}
 
 Convert::Convert(const Convert& rhs)
-: _input(rhs._input), _type(rhs._type), _c(rhs._c), _i(rhs._i), _f(rhs._f), _d(rhs._d)
-{
-	std::cout << "Copy Constructor Convert Object" << std::endl;
-}
+: _input(rhs._input), _type(rhs._type), _pseudo(rhs._pseudo),
+_precision(rhs._precision), _c(rhs._c), _i(rhs._i), _f(rhs._f), _d(rhs._d)
+{}
 
 Convert::~Convert()
-{
-	std::cout << "Destructor Convert Object" << std::endl;
-}
+{}
 
 Convert& Convert::operator=(const Convert& rhs)
 {
-	std::cout << "Copy Assignment Operator Convert Object" << std::endl;
 	if (this != &rhs)
 	{
 		this->_input = rhs._input;
 		this->_type = rhs._type;
+		this->_pseudo = rhs._pseudo;
+		this->_precision = rhs._precision;
 		this->_c = rhs._c;
 		this->_i = rhs._i;
 		this->_f = rhs._f;
@@ -62,15 +59,14 @@ Convert& Convert::operator=(const Convert& rhs)
 
 void Convert::parser(void)
 {
+	/* Get length of input string */
 	size_t len = _input.length();
 
+	/* Check empty string */
 	if (len == 0)
-	{
-		std::cout << "(empty string)" << std::endl;
-		throw (Convert::InvalidInputException());
-	}
+		throw (std::invalid_argument("error : empty string"));
 
-	// std::cout << "CHECK PSEUDO" << std::endl;
+	/* Check pseudo literal */
 	{
 		std::string pseudo[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
 		int pseudoIndex = -1;
@@ -80,36 +76,33 @@ void Convert::parser(void)
 			if (_input == pseudo[i])
 			{
 				pseudoIndex = i;
+				this->_pseudo = true;
 				break ;
 			}
 		}
-
 		switch (pseudoIndex)
 		{
 		case 0 ... 2:
-			std::cout << "IS FLOAT" << std::endl;
 			_type = FLOAT;
 			return ;
 		case 3: case 4: case 5:
-			std::cout << "IS DOUBLE" << std::endl;
 			_type = DOUBLE;
 			return ;
 		}
 	}
 
-	// std::cout << "CHECK SINGLE CHAR" << std::endl;
+	/* Check single char */
 	if (!isdigit(_input[0]) && len == 1)
 	{
 		if (len == 1)
 		{
-			std::cout << "IS CHAR" << std::endl;
 			_type = CHAR;
+			_precision = 1;
 			return ;
 		}
 	}
 
-	// std::cout << "CHECKING INPUT STRING" << std::endl;
-
+	/* Parse input string and count each element */
 	size_t digit = 0;
 	size_t sign = 0;
 	size_t dot = 0;
@@ -130,76 +123,69 @@ void Convert::parser(void)
 			c += 1;
 	}
 
+	/* Check syntax errors */
 	if (len != digit + sign + dot + f)
-	{
-		std::cout << "(type cannot be determined)" << std::endl;
-		throw (Convert::InvalidInputException());
-	}
+		throw (std::invalid_argument("error : type of literal cannot be determined"));
 
 	if (sign == 1)
 	{
 		if (_input[0] != '-')
-		{
-			std::cout << "(- wrong position)" << std::endl;
-			throw (Convert::InvalidInputException());
-		}
+			throw (std::invalid_argument("error : minus sign not at beginning of argument"));
 	}
 
 	if (dot > 1 || f > 1 || sign > 1)
-	{
-		std::cout << "(more than 1 . or f  or -)" << std::endl;
-		throw (Convert::InvalidInputException());
-	}
+		throw (std::invalid_argument("error : more than one f, - or ."));
 
 	if (dot == 1)
 	{
 		if (sign == 1 && !isdigit(_input[1]))
-		{
-			std::cout << "(- digit not at beginning)" << std::endl;
-			throw (Convert::InvalidInputException());
-		}
+			throw (std::invalid_argument("error : minus sign not at beginning of argument"));
 		else if (sign == 0 && !isdigit(_input[0]))
-		{
-			std::cout << "(digit not at beginning)" << std::endl;
-			throw (Convert::InvalidInputException());
-		}
+			throw (std::invalid_argument("error : digit not at beginning of argument"));
 	}
 
 	if (f == 1 && dot == 0)
+		throw (std::invalid_argument("error : floating point number without ."));
+
+	/* Determine precision */
+	if (dot == 0)
 	{
-		std::cout << "(float without precision)" << std::endl;
-		throw (Convert::InvalidInputException());
+		_precision = 1;
+	}
+	else if (dot == 1)
+	{
+		for (size_t i = 0; i < len; i++)
+		{
+			if (_input[i] == '.')
+			{
+				i += 1;
+				for ( ; i < len; i++)
+				{
+					if (std::isdigit(_input[i]))
+						_precision += 1;
+				}
+				break ;
+			}
+		}
 	}
 
+	/* Determine numeric data type */
 	if (dot == 1 && f == 1)
 	{
 		if (_input[len - 1] != 'f')
-		{
-			std::cout << "(f not at end)" << std::endl;
-			throw (Convert::InvalidInputException());
-		}
+			throw (std::invalid_argument("error : f not at end of argument"));
 		else if (!isdigit(_input[len - 2]))
-		{
-			std::cout << "(no space between . and f)" << std::endl;
-			throw (Convert::InvalidInputException());
-		}
-		std::cout << "IS FLOAT" << std::endl;
+			throw (std::invalid_argument("error : no space between . and f"));
 		_type = FLOAT;
 	}
 	else if (dot == 1 && f == 0)
 	{
 		if (_input[len - 1] == '.')
-		{
-			std::cout << "(. at end)" << std::endl;
-			throw (Convert::InvalidInputException());
-		}
-		std::cout << "IS DOUBLE" << std::endl;
+			throw (std::invalid_argument("error : . at end of argument"));
 		_type = DOUBLE;
-		return ;
 	}
 	else if (dot == 0 && f == 0 && digit >= 1)
 	{
-		std::cout << "IS INT" << std::endl;
 		_type = INT;
 	}
 }
@@ -210,18 +196,24 @@ void Convert::parser(void)
 
 void Convert::toChar(void)
 {
-	std::cout << "toChar" << std::endl;
-	this->_c = this->_input[0];
-	this->_i = static_cast<int>(_c);
+	this->_c = static_cast<unsigned char>(this->_input[0]);
+	this->_i = static_cast<long>(_c);
 	this->_f = static_cast<float>(_c);
 	this->_d = static_cast<double>(_c);
 }
 
 void Convert::toInt(void)
 {
-	std::cout << "toInt" << std::endl;
-	this->_i = std::stoi(this->_input);
-	this->_c = static_cast<char>(_i);
+	try
+	{
+		this->_i = std::stol(this->_input);
+	}
+	catch(...)
+	{
+		Convert::toDouble();
+		return ;
+	}
+	this->_c = static_cast<unsigned char>(_i);
 	this->_f = static_cast<float>(_i);
 	this->_d = static_cast<double>(_i);
 	
@@ -229,28 +221,19 @@ void Convert::toInt(void)
 
 void Convert::toFloat(void)
 {
-	std::cout << "toFloat" << std::endl;
 	this->_f = std::stof(this->_input);
-	this->_c = static_cast<char>(_f);
-	this->_i = static_cast<int>(_f);
+	this->_c = static_cast<unsigned char>(_f);
+	this->_i = static_cast<long>(_f);
 	this->_d = static_cast<double>(_f);
 }
 
 void Convert::toDouble(void)
 {
-	std::cout << "toDouble" << std::endl;
 	this->_d = std::stod(this->_input);
-	this->_c = static_cast<char>(_d);
-	this->_i = static_cast<int>(_d);
+	this->_c = static_cast<unsigned char>(_d);
+	this->_i = static_cast<long>(_d);
 	this->_f = static_cast<float>(_d);
 }
-
-// special cases, when conversion fails... limits
-// how to add:
-// Non-displayable?
-// impossible
-// improved printer?
-// header numeric limits and special values
 
 /* ************************************************************************** */
 /*                                    PRINTER                                 */
@@ -258,10 +241,38 @@ void Convert::toDouble(void)
 
 void Convert::printResults(void) const
 {
-	std::cout << "char: \'" << _c << "\'" << std::endl;
-	std::cout << "int: " << _i << std::endl;
-	std::cout << "float: " << _f << ".0f" << std::endl;
-	std::cout << "double: " << _d << ".0" << std::endl;
+	int precisionFloat;
+	int precisionDouble;
+
+	/* Print CHAR */
+	if (this->_pseudo)
+		std::cout << "char: impossible" << std::endl;
+	else if (std::isprint(this->_c) == 0)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: \'" << _c << "\'" << std::endl;
+
+	/* Print INT */
+	if (this->_pseudo)
+		std::cout << "int: impossible" << std::endl;
+	else if (this->_i < std::numeric_limits<int>::min() || this->_i > std::numeric_limits<int>::max())
+		std::cout << "int: Non displayable" << std::endl;
+	else
+		std::cout << "int: " << _i << std::endl;
+
+	/* Print FLOAT */
+	if (_precision <= std::numeric_limits<float>::max_digits10)
+		precisionFloat = _precision;
+	else
+		precisionFloat = std::numeric_limits<float>::max_digits10;
+	std::cout << "float: " << std::setprecision(precisionFloat) << std::fixed << _f << "f" << std::endl;
+
+	/* Print DOUBLE */
+	if (_precision <= std::numeric_limits<double>::max_digits10)
+		precisionDouble = _precision;
+	else
+		precisionDouble = std::numeric_limits<double>::max_digits10;
+	std::cout << "double: " << std::setprecision(precisionDouble) << std::fixed << _d << std::endl;
 }
 
 /* ************************************************************************** */
@@ -272,11 +283,10 @@ void Convert::convertInput(void)
 {
 	try
 	{
-		parser();
-
 		void (Convert::*funcPtr[4])(void) = {&Convert::toChar, &Convert::toInt, &Convert::toFloat, &Convert::toDouble};
+		
+		parser();
 		(this->*funcPtr[_type])();
-
 		printResults();
 	}
 	catch(const std::exception& e)
@@ -284,40 +294,6 @@ void Convert::convertInput(void)
 		std::cerr << e.what() << std::endl;
 	}
 }
-
-/* ************************************************************************** */
-/*                                   Accessor                                 */
-/* ************************************************************************** */
-
-std::string Convert::getInput(void) const
-{
-	return (this->_input);
-}
-
-char Convert::getChar(void) const
-{
-	return (this->_c);
-}
-
-int Convert::getInt(void) const
-{
-	return (this->_i);
-}
-
-float Convert::getFloat(void) const
-{
-	return (this->_f);
-}
-
-double Convert::getDouble(void) const
-{
-	return (this->_d);
-}
-
-/* ************************************************************************** */
-/*                               Non-Member Functions                         */
-/* ************************************************************************** */
-
 
 /* ************************************************************************** */
 /*                                Convert Class                               */
