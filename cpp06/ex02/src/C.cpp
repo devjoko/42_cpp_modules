@@ -6,10 +6,9 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 03:57:45 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/16 03:58:06 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/16 18:22:45 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../inc/C.hpp"
 
@@ -23,7 +22,9 @@
 
 C::C()
 : _type('C')
-{}
+{
+	std::cout << "Constructor C" << std::endl;
+}
 
 C::~C()
 {}
