@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 16:10:00 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/26 21:16:45 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/26 21:47:59 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,56 @@ int main(void)
 
 		std::cout << "Trying to access out of bounds [-3] :" << std::endl;
 		std::cout << str_array[-3] << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	std::cout << YELLOW << "/*                                Testing Copies                              */" << END << std::endl;
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	try
+	{
+		Array<int> arr1(7);
+		Array<int> arr2(3);
+
+		std::cout << "Size of arr1 : " << arr1.size() << std::endl;
+		std::cout << "Size of arr2 : " << arr2.size() << std::endl;
+
+		std::cout << BLUE << "* FILLING ARR1 *" << END << std::endl;
+		for (int i = 0; i < 7; i++)
+			arr1[i] = i * i * i;
+
+		std::cout << "Content of arr1 : ";
+		for (int i = 0; i < 7; i++)
+			std::cout << arr1[i] << " ";
+		std::cout << std::endl;
+
+		std::cout << "Content of arr2 : ";
+		for (int i = 0; i < 3; i++)
+			std::cout << arr2[i] << " ";
+		std::cout << std::endl;
+
+		std::cout << BLUE << "* ASSIGNING ARR1 TO ARR2 *" << END << std::endl;
+		arr2 = arr1;
+
+		std::cout << "Size of arr1 : " << arr1.size() << std::endl;
+		std::cout << "Size of arr2 : " << arr2.size() << std::endl;
+		
+		std::cout << BLUE << "* COMPARING CONTENT OF BOTH ARRAYS *" << END << std::endl;
+		for (int i = 0; i < 7; i++)
+			std::cout << arr1[i] << "\t" << arr2[i] << std::endl;
+
+		std::cout << BLUE << "* CHANGING CONTENT IN ARR2, BUT NOT ARR1 *" << END << std::endl;
+		for (int i = 0; i < 7; i++)
+			arr2[i] = i * i;
+
+		for (int i = 0; i < 7; i++)
+			std::cout << arr1[i] << "\t" << arr2[i] << std::endl;
+		
+		std::cout << BLUE << "* The change of arr2 didn't affect arr1, because a deep copy was made *" << END << std::endl;
+
+		system ("leaks array");
 	}
 	catch(const std::exception& e)
 	{
