@@ -6,7 +6,7 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 20:21:11 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/08 20:07:31 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/26 22:23:49 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define EASYFIND_H
 
 # include <iostream>
+# include <vector>
 # include <algorithm>
 # include <stdexcept>
 
