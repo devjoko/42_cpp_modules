@@ -6,38 +6,85 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 19:27:20 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/07 19:29:24 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/26 20:24:39 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/iter.hpp"
 
-int main( void )
+#define YELLOW	"\033[1;33m"
+#define BLUE	"\033[1;36m"
+#define END		"\033[0m"
+
+int main(void)
 {
-	const size_t len = 5;
-
-	char array[len] = {'H', 'E', 'L', 'L', 'O'};
-	int array2[len] = {1, 2, 3, 4, 5};
-	std::string array3[len] = {"This", "is", "so", "much", "fun!"};
-	float array4[len] = {0.4f, 1.5f, 5.5f, 21.21f, 42.42f};
+	const size_t size = 5;
+{
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	std::cout << YELLOW << "/*                                Testing Chars                               */" << END << std::endl;
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
 	
-	std::cout << "\n** Test with chars **" << std::endl;
-	iter(array, len, print);
-	std::cout << "\n** Test with ints **" << std::endl;
-	iter(array2, len, print);
-	std::cout << "\n** Test with strings **" << std::endl;
-	iter(array3, len, print);
-	std::cout << "\n** Test with floats **" << std::endl;
-	iter(array4, len, print);
+	char arr[size] = {'H', 'E', 'L', 'L', 'O'};
 
+	std::cout << BLUE << "* PRINT ONCE! *" << END << std::endl;
+	iter(arr, size, print);
 
+	std::cout << BLUE << "* PRINT TWICE! *" << END << std::endl;
+	iter(arr, size, printTwice);
+}
+{
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	std::cout << YELLOW << "/*                               Testing Strings                              */" << END << std::endl;
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	
+	std::string arr[size] = {"Hello", "World!", "I'm", "on", "fire!"};
 
-	// int tab[] = { 0, 1, 2, 3, 4 }; // );
-    // iter( tab, 5, print );
-    // Awesome *A = new Awesome[5];
-    // for (int i=0; i < 5; i++)
-    // {
-    //     std::cout << A[i];
-    // }
+	std::cout << BLUE << "* PRINT ONCE! *" << END << std::endl;
+	iter(arr, size, print);
+
+	std::cout << BLUE << "* PRINT TWICE! *" << END << std::endl;
+	iter(arr, size, printTwice);
+}
+{
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	std::cout << YELLOW << "/*                              Testing Integers                              */" << END << std::endl;
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	
+	int arr[size] = {1, 9, 2, 8, 3};
+
+	std::cout << BLUE << "* PRINT ONCE! *" << END << std::endl;
+	iter(arr, size, print);
+
+	std::cout << BLUE << "* PRINT TWICE! *" << END << std::endl;
+	iter(arr, size, printTwice);
+}
+{
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	std::cout << YELLOW << "/*                              Testing Floats                                */" << END << std::endl;
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	
+	float arr[size] = {0.5f, 9.4f, 1.3f, 8.2f, 2.1f};
+
+	std::cout << BLUE << "* PRINT ONCE! *" << END << std::endl;
+	iter(arr, size, print);
+
+	std::cout << BLUE << "* PRINT TWICE! *" << END << std::endl;
+	iter(arr, size, printTwice);
+}
+{
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	std::cout << YELLOW << "/*                             Testing Classes                                */" << END << std::endl;
+	std::cout << YELLOW << "/* ************************************************************************** */" << END << std::endl;
+	
+	Awesome *arr = new Awesome[5];
+
+	std::cout << BLUE << "* PRINT ONCE! *" << END << std::endl;
+	iter(arr, size, print);
+
+	std::cout << BLUE << "* PRINT TWICE! *" << END << std::endl;
+	iter(arr, size, printTwice);
+
+	delete[] arr;
+}
 	return 0;
 }
