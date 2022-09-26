@@ -6,15 +6,17 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 01:47:46 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/07 19:37:34 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/26 18:22:33 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef WHATEVER_H
-# define WHATEVER_H
+#ifndef WHATEVER_HPP
+# define WHATEVER_HPP
 
 # include <iostream>
+
+/* ************************************************************************** */
 
 template<typename T>
 void swap(T& a, T& b)
@@ -23,21 +25,48 @@ void swap(T& a, T& b)
 	a = b;
 	b = tmp;
 }
-// ref as well?
+
 template<typename T>
-T min(T a, T b)
+const T& min(const T& a, const T& b)
 {
 	if (a < b)
 		return (a);
 	return (b);
 }
-// ref as well?
+
 template<typename T>
-T max(T a, T b)
+const T& max(const T& a, const T& b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-#endif /* WHATEVER_H */
+/* ************************************************************************** */
+
+class Awesome
+{
+private:
+    int _n;
+public:
+    Awesome(void) : _n(0) {}
+    Awesome( int n ) : _n( n ) {}
+    Awesome & operator= (Awesome & a) { _n = a._n; return *this; }
+    bool operator==( Awesome const & rhs ) const { return (this->_n == rhs._n); }
+    bool operator!=( Awesome const & rhs ) const{ return (this->_n != rhs._n); }
+    bool operator>( Awesome const & rhs ) const { return (this->_n > rhs._n); }
+    bool operator<( Awesome const & rhs ) const { return (this->_n < rhs._n); }
+    bool operator>=( Awesome const & rhs ) const { return (this->_n >= rhs._n); }
+    bool operator<=( Awesome const & rhs ) const { return (this->_n <= rhs._n); }
+    int get_n() const { return _n; }
+};
+
+std::ostream & operator<< (std::ostream &o_stream, Awesome &a)
+{
+    o_stream << a.get_n() << "\n";
+    return (o_stream);
+}
+
+/* ************************************************************************** */
+
+#endif /* WHATEVER_HPP */
