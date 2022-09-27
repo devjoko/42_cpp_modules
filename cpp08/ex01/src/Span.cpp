@@ -6,12 +6,11 @@
 /*   By: jpfuhl <jpfuhl@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 20:22:25 by jpfuhl            #+#    #+#             */
-/*   Updated: 2022/09/09 18:44:25 by jpfuhl           ###   ########.fr       */
+/*   Updated: 2022/09/27 02:03:04 by jpfuhl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Span.hpp"
-#include <limits>
 
 /* ************************************************************************** */
 /*                                  Span Class                                */
@@ -21,26 +20,30 @@
 /*                        Orthodox Canonical Class Form                       */
 /* ************************************************************************** */
 
+Span::Span()
+: _size(0), _count(0) {}
+
 Span::Span(unsigned int N)
-: _size(N), _count(0)
+: _size(N), _count(0) { _container.reserve(N); }
+
+Span::Span(const Span& rhs)
+: _size(rhs._size), _count(rhs._count)
 {
-	std::cout << "Constructor Span" << std::endl;
+	this->_container = rhs._container;
 }
 
-// Span::Span(const Span& rhs)
-// {
+Span::~Span() {}
 
-// }
-
-Span::~Span()
+Span& Span::operator=(const Span& rhs)
 {
-	std::cout << "Destructor Span" << std::endl;
+	if (this != &rhs)
+	{
+		this->_size = rhs._size;
+		this->_count = rhs._count;
+		this->_container = rhs._container;
+	}
+	return (*this);
 }
-
-// Span& Span::operator=(const Span& rhs)
-// {
-	
-// }
 
 /* ************************************************************************** */
 /*                                Member Functions                            */
@@ -51,90 +54,124 @@ void Span::addNumber(int number)
 	try
 	{
 		if (this->_count + 1 > this->_size)
-			throw (std::range_error("error: stack is full"));
+			throw (std::range_error("error : stack is full"));
 
-		this->_stack.push_back(number);
+		this->_container.push_back(number);
 		this->_count += 1;
-
-		// std::vector<int>::iterator it = this->_stack.begin();
-		// for ( ; it != this->_stack.end(); it++)
-		// 	std::cout << *it << std::endl;
-		// std::cout << "*******************" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << END << std::endl;
 	}
-	
+}
+
+void Span::addNumber(std::vector<int>::iterator first, std::vector<int>::iterator last)
+{
+	try
+	{
+		if (first > last)
+			throw (std::invalid_argument("error : first must be smaller than last"));
+		else if (this->_count + 1 > this->_size)
+				throw (std::range_error("error : stack is full"));
+
+		std::srand(time(NULL));
+		std::vector<int>::iterator it = first;
+		int diff = last - first;
+		int value;
+
+		for ( ; it != last; it++)
+		{
+			if (this->_count + 1 > this->_size)
+				throw (std::range_error("error : stack is full"));
+			value = std::rand() % (diff * 10);
+			this->_container.insert(_container.begin(), 1, value);
+			_count += 1;
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << END << std::endl;
+	}
 }
 
 int Span::shortestSpan(void)
 {
 	int diff = INT_MAX;
-	int tmp;
+	std::vector<int> tmp_container(_container);
 
 	try
 	{
 		if (this->_size == 0 || this->_count == 0)
-			throw (std::range_error("error: stack is empty"));
+			throw (std::range_error("error : stack is empty"));
 		else if (this->_count == 1)
-			diff = 0; // 1 auch nicht
+			throw (std::range_error("error : cannot calculate span of single number"));
 		else if (this->_count >= 2)
 		{
-			std::sort(this->_stack.begin(), this->_stack.end());
-			std::vector<int>::iterator it = this->_stack.begin();
-			for ( ; it != this->_stack.end(); it++)
+			int tmp_int;
+
+			std::sort(tmp_container.begin(), tmp_container.end());
+			std::vector<int>::iterator it = tmp_container.begin();
+			for ( ; it != tmp_container.end(); it++)
 			{
-				if (it + 1 != this->_stack.end())
-					tmp = *(it + 1) - *it;
-				// std::cout << tmp << std::endl;
-				if (tmp < diff)
-					diff = tmp;
+				if (it + 1 != tmp_container.end())
+					tmp_int = *(it + 1) - *it;
+				if (tmp_int < diff)
+					diff = tmp_int;
 			}
 		}
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << END << std::endl;
 		return (-1);
 	}
-
 	return (diff);
 }
 
-// tmp vector stack sortieren
-
-
 int Span::longestSpan(void)
 {
+	std::vector<int> tmp_container(_container);
+
 	try
 	{
 		if (this->_size == 0 || this->_count == 0)
-			throw (std::range_error("error: stack is empty"));
-		std::sort(this->_stack.begin(), this->_stack.end());
+			throw (std::range_error("error : stack is empty"));
+		else if (this->_count == 1)
+			throw (std::range_error("error : cannot calculate span of single number"));
+		else if (this->_count >= 2)
+			std::sort(tmp_container.begin(), tmp_container.end());
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << RED << e.what() << END << std::endl;
 		return (-1);
 	}
-
-	return (this->_stack[this->_count - 1] - this->_stack[0]);
+	return ( *(tmp_container.end() - 1) - *tmp_container.begin() );
 }
 
+/* ************************************************************************** */
+/*                                   Accessor                                 */
+/* ************************************************************************** */
+
+const std::vector<int>& Span::getContainer(void) const
+{
+	return (this->_container);
+}
 
 /* ************************************************************************** */
 /*                               Non-Member Functions                         */
 /* ************************************************************************** */
 
-// std::ostream& operator<<(const std::ostream& out, const Span& obj)
-// {
-// 	std::vector<int>::iterator it = );
+std::ostream& operator<<(std::ostream& out, const Span& obj)
+{
+	std::vector<int>::const_iterator it = obj.getContainer().begin();
 
-// 	while (it != _stack.end())
-		
-// }
-
+	out << YELLOW << "Container holds : " << END;
+	for ( ; it != obj.getContainer().end(); it++)
+		out << *it << " ";
+	out << std::endl << std::endl;
+	return (out);
+}
 
 /* ************************************************************************** */
 /*                                  Span Class                                */
